@@ -4,22 +4,17 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmailsTable extends Migration
+class CreateEmailTable extends Migration
 {
-   /**
+    /**
      * Run the migrations.
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('emails', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->string('name');
-            $table->string('subject');
-            $table->string('path_thumbnail');
-            $table->string('path_to_email');
+        Schema::create('email', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->timestamps();
         });
     }
@@ -31,6 +26,6 @@ class CreateEmailsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('emails');
+        Schema::dropIfExists('email');
     }
 }
