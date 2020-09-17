@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://kit.fontawesome.com/12887e7e29.js" crossorigin="anonymous"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -21,10 +22,10 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <img src="{{ asset('company/logo.png') }}" width="55">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -50,11 +51,10 @@
                             @endif
                         @else
                         <li class="nav-item">
-                            <a class="nav-link" href="/email">Email</a>
+                            <a class="nav-link" href="/home"><i class="fas fa-home"></i></a>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link" href="/email/create">+</a>
+                            <a class="nav-link" href="/email"><i class="fas fa-envelope"></i></a>
                         </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -65,7 +65,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Logout') }} <i class="fas fa-sign-out-alt"></i>
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -77,6 +77,14 @@
                     </ul>
                 </div>
             </div>
+        </nav>
+        <nav class="navbar navbar-expand-md navbar-light bg-white justify-content-between mb-5">
+        <div class="container">
+            <a class="navbar-brand ml-3"><i class="fas fa-bars"></i></a>
+            <form class="form-inline">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            </form>
+        </div>
         </nav>
 
         <main class="py-4">

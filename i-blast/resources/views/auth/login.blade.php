@@ -64,6 +64,14 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4 mt-5">
+                                <button class="btn btn-danger"><i class="fab fa-google"></i> Login with Google</button>
+                            </div>
+                            <div class="col-md-8 offset-md-4 mt-2">
+                                <button class="btn btn-primary"><i class="fab fa-facebook-f"></i> Login with Facebook</button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

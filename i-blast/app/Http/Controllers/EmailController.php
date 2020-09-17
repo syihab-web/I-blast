@@ -47,7 +47,7 @@ class EmailController extends Controller
                 'pesan' =>'required',
                 'opsi_template' => 'required'
             ]);
-        if($request->opsi_template==2){
+        if($request->opsi_template==1){
             $sendMail = Mail::raw($request->pesan, function ($message)use($request) {
                 $message->from('bijiagus@gmail.com','Agus Wiji Suhariono');
                 $message->subject($request->subjek);

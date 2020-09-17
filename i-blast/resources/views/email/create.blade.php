@@ -18,8 +18,8 @@
                 </div>
                 <div class="form-group">
                     <select class="form-control" name="opsi_template" id="opsi_template">
-                        <option value="1">Dengan Template</option>
-                        <option value="2">Tanpa Template</option>
+                        <option value="1">No Template</option>
+                        <option value="2">Template 1</option>
                     </select>
                 </div>
                 <div class="form-group">
