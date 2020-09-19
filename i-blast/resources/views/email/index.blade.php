@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="container">
-        <a href="/email/create" class="btn btn-primary mb-3">Add Email</a>
         <table class="table table-hover">
             <thead>
               <tr>

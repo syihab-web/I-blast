@@ -66,9 +66,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/home"><i class="fas fa-home"></i> Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/email"><i class="fas fa-envelope"></i> Email</a>
-                        </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -95,14 +92,14 @@
 
                 <!-- Sidebar -->
             <div class="bg-light border-right" id="sidebar-wrapper">
-                <div class="sidebar-heading">Start Bootstrap </div>
+                <div class="sidebar-heading"><a href="" class="list-group-item list-group-item-action bg-light"><i class="fas fa-user-circle"></i>  Edit Profile</a>
+                </div>
+                <br>
                 <div class="list-group list-group-flush">
-                <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+
+                <a class="list-group-item list-group-item-action bg-light" href="/email"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                <a class="list-group-item list-group-item-action bg-light" href="/email/create"><i class="fas fa-envelope"></i>  Send Email</a>
+                <a class="list-group-item list-group-item-action bg-light" href="#"><i class="fas fa-images"></i>  See Templates</a>
                 </div>
             </div>
             <div id="page-content-wrapper">
