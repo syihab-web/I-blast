@@ -1,4 +1,13 @@
-<script src="{{ asset('js/app.js') }}" defer></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+</head>
+<body>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 <script src="{{ asset('fontawesome/js/fontawesome.min.js') }}" defer></script>
 <script src="{{ asset('fontawesome/js/all.js') }}" defer></script>
 <script src="{{ asset('fontawesome/js/solid.js') }}" defer></script>
@@ -50,7 +59,7 @@
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
+                                <input type="checkbox" class="form-checkbox mt-2"> Show password
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -96,3 +105,17 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.form-checkbox').click(function(){
+			if($(this).is(':checked')){
+				$('.form-control').attr('type','text');
+			}else{
+				$('.form-control').attr('type','password');
+			}
+		});
+	});
+</script>
+
+</body>
+</html>
