@@ -21,3 +21,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/email', 'EmailController');
 Route::post('/email/sendMail', 'EmailController@sendMail');
+Route::get('auth/{provider}', 'GoogleController@redirect');
+Route::get('auth/{provider}/callback', 'GoogleController@callback');

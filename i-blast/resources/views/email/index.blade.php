@@ -25,12 +25,14 @@
             <tbody>
               <tr>
                 <th scope="row">1</th>
-                <td>syihabudi234@gmail.com</td>
+                <td>syihabudin234@gmail.com</td>
                 <td>Testing Email</td>
                 <td>laravel</td>
                 <td>
-                    <button class="btn btn-success"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                <form action="form-check-inline">
+                    <a href="" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                    <a href="" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                </form>
                 </td>
               </tr>
             </tbody>

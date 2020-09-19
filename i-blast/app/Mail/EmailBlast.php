@@ -16,13 +16,10 @@ class EmailBlast extends Mailable
      *
      * @return void
      */
-    public $text, $subject, $email;
-    public function __construct($text, $subject, $email)
-    {
 
-        $this->subject = $subject;
-        $this->text = $text;
-        $this->email = $email;
+    public function __construct($data)
+    {
+        $this->mail_data = $data;
     }
 
     /**
@@ -32,10 +29,6 @@ class EmailBlast extends Mailable
      */
     public function build()
     {
-        return $this->from('no_reply@company.id')->view('template.template1')->with([
-            'subjek' => $this->subject,
-            'text' => $this->text,
-            'email' => $this->email
-        ]);
+        return $this->from('syihabudin234@gmail.com', 'i-blast')->subject('Email Blast')->view('template.template', ['mail_data' => $this->mail_data]);
     }
 }

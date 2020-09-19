@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Contracts\Mail\Mailable;
-use App\Http\Mail\EmailBlast;
+use App\Mail\EmailBlast;
 
 class EmailController extends Controller
 {
@@ -41,30 +41,14 @@ class EmailController extends Controller
     }
 
     public function sendMail(Request $request){
-        $this->validate($request,[
-                'email' => 'required',
-                'subjek' => 'required',
-                'pesan' =>'required',
-                'opsi_template' => 'required'
-            ]);
-        if($request->opsi_template==1){
-            $sendMail = Mail::raw($request->pesan, function ($message)use($request) {
-                $message->from('bijiagus@gmail.com','Agus Wiji Suhariono');
-                $message->subject($request->subjek);
-                $message->to($request->email);
-            });
-        }else{
-            $sendMail = Mail::send('template.template', ['request'=>$request], function($message)use($request){
-                $message->from('bijiagus@gmail.com','Agus Wiji Suhariono');
-                $message->subject($request->subjek);
-                $message->to($request->email);
-            });
-        }
-        if($sendMail){
-             \Session::flash('flash_message','Email berhasil dikirim');
+        $data = [
+            'name' => $request->email,
+            'subjek' => $request->subjek,
+            'pesan' => $request->pesan
+        ];
 
-            return redirect('/email');
-        }
+        Mail::to($request->email)->send(new EmailBlast($data));
+
     }
 
     /**

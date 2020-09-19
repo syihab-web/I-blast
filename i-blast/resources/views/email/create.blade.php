@@ -16,16 +16,6 @@
                     <label for="text">text</label>
                     <textarea id="text" class="form-control" name="pesan" id="text" cols="30" rows="10"></textarea>
                 </div>
-                <div class="form-group">
-                    <select class="form-control" name="opsi_template" id="opsi_template">
-                        <option value="1">No Template</option>
-                        <option value="2">Template 1</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="images">Image</label>
-                    <input type="file" class="form-control-file" name="image" id="image">
-                </div>
                 <button class="btn btn-success" type="submit">submit</button>
             </form>
      </div>
