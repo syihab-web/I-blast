@@ -29,7 +29,7 @@
                 <td>laravel</td>
                 <td>
                 <form action="form-check-inline">
-                    <a href="" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                    <a href="" class="btn btn-primary"><i class="fas fa-eye"></i></a>
                     <a href="" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
                 </form>
                 </td>

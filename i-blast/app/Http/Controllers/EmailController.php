@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Contracts\Mail\Mailable;
 use App\Mail\EmailBlast;
 
 class EmailController extends Controller
@@ -45,13 +44,18 @@ class EmailController extends Controller
     }
 
     public function sendMail(Request $request){
-        $data = [
-            'name' => $request->email,
-            'subjek' => $request->subjek,
-            'pesan' => $request->pesan
-        ];
+        $receivers = explode(" ",$request->email);
+        foreach($receivers as $receiver){
+            $data = [
+                'from' => $request->from,
+                'subject' => $request->subject,
+                'pesan' => $request->pesan
+            ];
 
-        Mail::to($request->email)->send(new EmailBlast($data));
+            Mail::to($receiver)->send(new EmailBlast($data));
+        }
+
+        return back();
 
     }
 

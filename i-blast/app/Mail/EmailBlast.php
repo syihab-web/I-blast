@@ -2,7 +2,9 @@
 
 namespace App\Mail;
 
+use App\EmailAccount;
 use Illuminate\Bus\Queueable;
+use Illuminate\Http\Request;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -10,6 +12,7 @@ use Illuminate\Queue\SerializesModels;
 class EmailBlast extends Mailable
 {
     use Queueable, SerializesModels;
+    public $data;
 
     /**
      * Create a new message instance.
@@ -19,7 +22,7 @@ class EmailBlast extends Mailable
 
     public function __construct($data)
     {
-        $this->mail_data = $data;
+        $this->data = $data;
     }
 
     /**
@@ -27,8 +30,8 @@ class EmailBlast extends Mailable
      *
      * @return $this
      */
-    public function build()
+    public function build(Request $request)
     {
-        return $this->from('syihabudin234@gmail.com', 'i-blast')->subject('Email Blast')->view('template.template', ['mail_data' => $this->mail_data]);
+        return $this->from($this->data['from'])->subject($request->subject)->view('template.template')->with('data',$this->data);
     }
 }

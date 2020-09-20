@@ -27,7 +27,7 @@
 <body>
 <section id="nav-bar">
 
-	<nav class="navbar navbar-expand-lg navbar-light ">
+	<nav class="navbar navbar-expand-lg navbar-light bg-dark">
     <div class="container">
         <a class="navbar-brand" href="/"><img src="{{ asset('company/logo_2.png') }}"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +36,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
         <li class="nav-item ">
-            <a class="nav-link" href="/home">SignUpFree</a>
+            <a class="nav-link" href="/home"><i class="fas fa-sign-in-alt"></i> SignUpFree</a>
         </li>
         </ul>
     </div>
@@ -53,8 +53,8 @@
         <img src="{{ asset('company/images2.png') }}">
     </div>
     <div class="col-md-6 text-center">
-        <p class="promo-title">Do It With I-blast</p>
-    <p>Free email marketing for all, The lighter way to enjoy email Blast & For better email markering!</p>
+        <p class="promo-title">For Better Email Marketing</p>
+    <p>I-Blast merupakan website yang bertujuan untuk mempermudah pengiriman Email marketing Secara Gratis, Cepat, dan Praktis.</p>
     <a href="/home" class="btn btn-outline-success">Get Started</a>
 
 </div>
