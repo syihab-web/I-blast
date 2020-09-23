@@ -8,5 +8,5 @@ class Email extends Model
 {
     protected $table = 'email';
 
-    protected $fillable = ['from', 'to', 'subject', 'pesan', 'image', 'file'];
+    protected $fillable = ['from', 'to', 'subject', 'pesan', 'image', 'file', 'link'];
 }

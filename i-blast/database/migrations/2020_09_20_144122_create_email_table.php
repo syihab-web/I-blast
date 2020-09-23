@@ -21,6 +21,7 @@ class CreateEmailTable extends Migration
             $table->longText('pesan');
             $table->string('image')->nullable();
             $table->string('file')->nullable();
+            $table->string('link')->nullable();
             $table->timestamps();
         });
     }
