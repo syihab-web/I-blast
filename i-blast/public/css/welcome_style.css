@@ -16,7 +16,7 @@ body
 }
 .navbar
 {
-	background-image: linear-gradient(to right,  #009933, #006622);
+	background-image: linear-gradient(to right,  #1a1a1a, #001a09);
 	padding: 0 !important;
 }
 .navbar-nav
@@ -42,7 +42,6 @@ body
 
 #banner
 {
-	background-image: linear-gradient(to right, #1a1a1a, #001a09);
 	color: #fff;
 	padding-top: 2%;
 }

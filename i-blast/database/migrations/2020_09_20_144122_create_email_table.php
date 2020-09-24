@@ -14,7 +14,14 @@ class CreateEmailTable extends Migration
     public function up()
     {
         Schema::create('email', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->Increments('id');
+            $table->string('from');
+            $table->string('to');
+            $table->string('subject');
+            $table->longText('pesan');
+            $table->string('image')->nullable();
+            $table->string('file')->nullable();
+            $table->string('link')->nullable();
             $table->timestamps();
         });
     }

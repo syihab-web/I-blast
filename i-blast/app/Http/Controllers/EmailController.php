@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Contracts\Mail\Mailable;
 use App\Mail\EmailBlast;
+use App\Email;
+
+use function GuzzleHttp\Promise\all;
 
 class EmailController extends Controller
 {
@@ -20,7 +22,8 @@ class EmailController extends Controller
      */
     public function index()
     {
-        return view('email.index');
+        $value = Email::all();
+        return view('email.index', compact('value'));
     }
 
     /**
@@ -45,13 +48,34 @@ class EmailController extends Controller
     }
 
     public function sendMail(Request $request){
-        $data = [
-            'name' => $request->email,
-            'subjek' => $request->subjek,
-            'pesan' => $request->pesan
-        ];
+        $receivers = explode(" ",$request->email);
+        foreach($receivers as $receiver){
+                if($request->hasFile('image') || $request->hasFile('file')){
+                    $file = $request->file('image');
+                    $file2 = $request->file('file');
+                    $extention = $file->getClientOriginalExtension();
+                    $extention2 = $file2->getClientOriginalExtension();
+                    $filename = time() . '.' . $extention;
+                    $file->move('assets/image/', $filename);
+                    $filename2 = time() . '.' . $extention2;
+                    $file2->move('assets/file/', $filename2);
 
-        Mail::to($request->email)->send(new EmailBlast($data));
+                $data = [
+                    'from' => $request->from,
+                    'to' => $request->email,
+                    'subject' => $request->subject,
+                    'pesan' => $request->pesan,
+                    'image' => $filename,
+                    'file' => $filename2,
+                    'link' => $request->link
+                ];
+
+                Email::create($data);
+                Mail::to($receiver)->send(new EmailBlast($data));
+            }
+        }
+
+        return back();
 
     }
 
