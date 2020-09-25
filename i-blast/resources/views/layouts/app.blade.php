@@ -92,7 +92,7 @@
 
                 <!-- Sidebar -->
             <div class="bg-light border-right" id="sidebar-wrapper">
-                <div class="sidebar-heading"><a href="" class="list-group-item list-group-item-action bg-light"><i class="fas fa-user-circle"></i>  Edit Profile</a>
+                <div class="sidebar-heading"><a href="{{ route('profile.edit') }}" class="list-group-item list-group-item-action bg-light"><i class="fas fa-user-circle"></i>  Edit Profile</a>
                 </div>
                 <br>
                 <div class="list-group list-group-flush">

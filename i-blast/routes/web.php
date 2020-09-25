@@ -19,6 +19,17 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('profile', 'ProfileController@edit')->name('profile.edit');
+
+    Route::patch('profile', 'ProfileController@update')->name('profile.update');
+
+    Route::get('password', 'PasswordController@edit')->name('user.password.edit');
+
+    Route::patch('password', 'PasswordController@update')->name('user.password.update');
+});
+
 Route::resource('/email', 'EmailController');
 Route::post('/email/sendMail', 'EmailController@sendMail');
 Route::get('auth/{provider}', 'GoogleController@redirect');
