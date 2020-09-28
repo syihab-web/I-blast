@@ -26,6 +26,10 @@ class EmailController extends Controller
         return view('email.index', compact('value'));
     }
 
+     public function dashboard(){
+        return view('email.dashboard');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -50,29 +54,17 @@ class EmailController extends Controller
     public function sendMail(Request $request){
         $receivers = explode(" ",$request->email);
         foreach($receivers as $receiver){
-                if($request->hasFile('image') || $request->hasFile('file')){
-                    $file = $request->file('image');
-                    $file2 = $request->file('file');
-                    $extention = $file->getClientOriginalExtension();
-                    $extention2 = $file2->getClientOriginalExtension();
-                    $filename = time() . '.' . $extention;
-                    $file->move('assets/image/', $filename);
-                    $filename2 = time() . '.' . $extention2;
-                    $file2->move('assets/file/', $filename2);
-
                 $data = [
                     'from' => $request->from,
                     'to' => $request->email,
                     'subject' => $request->subject,
                     'pesan' => $request->pesan,
-                    'image' => $filename,
-                    'file' => $filename2,
                     'link' => $request->link
                 ];
 
                 Email::create($data);
                 Mail::to($receiver)->send(new EmailBlast($data));
-            }
+
         }
 
         return back();
@@ -82,12 +74,12 @@ class EmailController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param \App\Email $email
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Email $email)
     {
-        //
+        return view('email.show', compact('email'));
     }
 
     /**
@@ -121,6 +113,9 @@ class EmailController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Email::destroy($id);
+        return redirect('/email')->with('delete', "Data berhasil dihapus!");
     }
+
+
 }

@@ -50,7 +50,7 @@
 <div class="container">
 <div class="row">
     <div class="col-md-6">
-        <img src="{{ asset('company/images2.png') }}">
+        <img src="{{ asset('company/email.png') }}" width="100%">
     </div>
     <div class="col-md-6 text-center">
         <p class="promo-title">For Better Email Marketing</p>

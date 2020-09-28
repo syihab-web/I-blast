@@ -39,10 +39,14 @@
                 <td>{{ $values['subject'] }}</td>
                 <td>{{ $values['to'] }}</td>
                 <td>
-                <form action="form-check-inline">
-                    <a href="" class="btn btn-primary"><i class="fas fa-eye"></i></a>
-                    <a href="" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
-                </form>
+                    <div class="btn-group" role="group">
+                        <a href="/email/{{ $values->id }}" class="btn btn-primary mr-1"><i class="fas fa-eye"></i></a>
+                        <form action="/email/{{ $values->id }}" method="POST">
+                            @method('delete')
+                            @csrf
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')"><i class="fas fa-trash-alt"></i></button>
+                        </form>
+                    </div>
                 </td>
               </tr>
               @endforeach
