@@ -146,12 +146,11 @@
       </tr>
       <tr>
         <td class="innerpadding borderbottom">
-          <img class="fix" src="{{ asset('assets/image/'.$data['image']) }}" width="100%" border="0" alt="" />
-        </td>
+          </td>
       </tr>
       <tr>
         <td class="innerpadding bodycopy">
-            {{ $data['pesan'] }}
+            {!! nl2br($data['pesan']) !!}
         </td>
       </tr>
       <tr>

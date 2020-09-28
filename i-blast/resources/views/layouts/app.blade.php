@@ -2,6 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="Content-Type"  content="text/html charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
@@ -17,6 +18,8 @@
     <script src="{{ asset('fontawesome/js/brands.js') }}" defer></script>
     <script src="{{ asset('fontawesome/js/regular.js') }}" defer></script>
     <script src="{{ asset('js/simple-modal.js') }}" defer></script>
+    <script src="{{ asset('js/taginput.js') }}" defer></script>
+    <script src="https://cdn.tiny.cloud/1/lq7e09nr1zvfkk9rgymrak6zoskkyv2dtna24qw94jhuxh22/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
 
@@ -24,11 +27,12 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('fontawesome/css/fontawesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('fontawesome/all.css') }}">
-    <link rel="stylesheet" href="{{ asset('fontawesome/solid.css') }}">
-    <link rel="stylesheet" href="{{ asset('fontawesome/brands.css') }}">
-    <link rel="stylesheet" href="{{ asset('fontawesome/regular.css') }}">
+    <link rel="stylesheet" href="{{ asset('fontawesome/css/all.css') }}">
+    <link rel="stylesheet" href="{{ asset('fontawesome/css/solid.css') }}">
+    <link rel="stylesheet" href="{{ asset('fontawesome/css/brands.css') }}">
+    <link rel="stylesheet" href="{{ asset('fontawesome/css/regular.css') }}">
     <link rel="stylesheet" href="{{ asset('css/modals.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/taginput.css') }}">
     <link rel="stylesheet" href="{{ asset('css/simple-modal.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 
@@ -190,9 +194,8 @@ html.transition *:after {
                           <a href="">Dashboard</a>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="#"><i class="fas fa-tachometer-alt"></i> Dashboard Home</a>
+                          <a class="dropdown-item" href="/email/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard Home</a>
                           <a class="dropdown-item" href="/email"><i class="fas fa-history"></i> Email History</a>
-                          <a class="dropdown-item" href="#">Something else here</a>
                         </div>
                       </div>
                 </i>

@@ -9,4 +9,5 @@ class Email extends Model
     protected $table = 'email';
 
     protected $fillable = ['from', 'to', 'subject', 'pesan', 'image', 'file', 'link'];
+    protected $guarded = ['id'];
 }
