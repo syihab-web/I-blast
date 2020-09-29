@@ -24,7 +24,7 @@
                     <a href=""><i class="fas fa-sort-amount-down"></i></a>
                     <a href=""><i class="fas fa-sort-amount-up"></i></a>
                 </th>
-                <th scope="col">Email Tujuan
+                <th scope="col">Tanggal
                     <a href=""><i class="fas fa-sort-amount-down"></i></a>
                     <a href=""><i class="fas fa-sort-amount-up"></i></a>
                 </th>
@@ -37,7 +37,7 @@
               <th scope="row">{{ $loop->iteration }}</th>
                 <td>{{ $values['from'] }}</td>
                 <td>{{ $values['subject'] }}</td>
-                <td>{{ $values['to'] }}</td>
+                <td>{{ $values['created_at'] }}</td>
                 <td>
                     <div class="btn-group" role="group">
                         <a href="/email/{{ $values->id }}" class="btn btn-primary mr-1"><i class="fas fa-eye"></i></a>

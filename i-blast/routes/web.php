@@ -20,6 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/email/dashboard', 'EmailController@dashboard');
+route::get('/search','EmailController@search');
 Route::resource('/email', 'EmailController');
 Route::get('/email/{value}', 'EmailController@show');
 Route::post('/email/sendMail', 'EmailController@sendMail');

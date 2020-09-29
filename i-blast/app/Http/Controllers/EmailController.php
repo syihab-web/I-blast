@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\EmailBlast;
 use App\Email;
-
+use App\User;
+use DB;
 use function GuzzleHttp\Promise\all;
 
 class EmailController extends Controller
@@ -26,8 +27,11 @@ class EmailController extends Controller
         return view('email.index', compact('value'));
     }
 
+
      public function dashboard(){
-        return view('email.dashboard');
+        $users = User::count();
+        $count = Email::count();
+        return view('email.dashboard', compact('count', 'users'));
     }
 
     /**
@@ -69,6 +73,16 @@ class EmailController extends Controller
 
         return back();
 
+    }
+
+    public function search(Request $request){
+        $value = Email::when($request->search, function ($query) use ($request) {
+            $query->where('to', 'like', "%{$request->search}%")
+                ->orWhere('from', 'like', "%{$request->search}%")
+                ->orWhere('subject', 'like', "%{$request->search}%");
+        })->get();
+
+        return view('email.index', compact('value'));
     }
 
     /**
