@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\EmailBlast;
+use App\Email;
+
+use function GuzzleHttp\Promise\all;
 
 class EmailController extends Controller
 {
@@ -19,7 +22,12 @@ class EmailController extends Controller
      */
     public function index()
     {
-        return view('email.index');
+        $value = Email::all();
+        return view('email.index', compact('value'));
+    }
+
+     public function dashboard(){
+        return view('email.dashboard');
     }
 
     /**
@@ -46,13 +54,17 @@ class EmailController extends Controller
     public function sendMail(Request $request){
         $receivers = explode(" ",$request->email);
         foreach($receivers as $receiver){
-            $data = [
-                'from' => $request->from,
-                'subject' => $request->subject,
-                'pesan' => $request->pesan
-            ];
+                $data = [
+                    'from' => $request->from,
+                    'to' => $request->email,
+                    'subject' => $request->subject,
+                    'pesan' => $request->pesan,
+                    'link' => $request->link
+                ];
 
-            Mail::to($receiver)->send(new EmailBlast($data));
+                Email::create($data);
+                Mail::to($receiver)->send(new EmailBlast($data));
+
         }
 
         return back();
@@ -62,12 +74,12 @@ class EmailController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param \App\Email $email
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Email $email)
     {
-        //
+        return view('email.show', compact('email'));
     }
 
     /**
@@ -101,6 +113,9 @@ class EmailController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Email::destroy($id);
+        return redirect('/email')->with('delete', "Data berhasil dihapus!");
     }
+
+
 }

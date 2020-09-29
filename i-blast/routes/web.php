@@ -31,6 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::resource('/email', 'EmailController');
+Route::get('/email/{value}', 'EmailController@show');
 Route::post('/email/sendMail', 'EmailController@sendMail');
 Route::get('auth/{provider}', 'GoogleController@redirect');
 Route::get('auth/{provider}/callback', 'GoogleController@callback');

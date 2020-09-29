@@ -98,7 +98,7 @@
             </tr>
             <tr>
               <td class="bodycopy">
-                {{ $data['pesan'] }}
+
             </td>
             </tr>
           </table>
@@ -127,7 +127,7 @@
                       <table class="buttonwrapper" bgcolor="#e05443" border="0" cellspacing="0" cellpadding="0">
                         <tr>
                           <td class="button" height="45">
-                            <a href="#">Get Link</a>
+                            <a href="{{ $data['link'] }}">Get Link</a>
                           </td>
                         </tr>
                       </table>
@@ -146,12 +146,11 @@
       </tr>
       <tr>
         <td class="innerpadding borderbottom">
-          <img class="fix" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/wide.png" width="100%" border="0" alt="" />
-        </td>
+          </td>
       </tr>
       <tr>
         <td class="innerpadding bodycopy">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan dictum, nisi libero ultricies ipsum, in posuere mauris neque at erat.
+            {!! nl2br($data['pesan']) !!}
         </td>
       </tr>
       <tr>

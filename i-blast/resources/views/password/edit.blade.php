@@ -73,14 +73,17 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mb-0">
+                            <div class="form-group row">
                                 <div class="col-md-6 offset-md-4">
-                                    <input type="checkbox" class="form-checkbox mt-2">Show password
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    <div class="custom-control custom-checkbox">
+                                        <input id="checkbox" type="checkbox" class="custom-control-input">
+                                        <label class="custom-control-label" for="checkbox">Show Password</label>
+                                        @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
 
@@ -100,7 +103,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('.form-checkbox').click(function(){
+		$('.custom-control-input').click(function(){
 			if($(this).is(':checked')){
 				$('.form-control').attr('type','text');
 			}else{

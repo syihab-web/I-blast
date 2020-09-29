@@ -2,6 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="Content-Type"  content="text/html charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
@@ -16,6 +17,9 @@
     <script src="{{ asset('fontawesome/js/solid.js') }}" defer></script>
     <script src="{{ asset('fontawesome/js/brands.js') }}" defer></script>
     <script src="{{ asset('fontawesome/js/regular.js') }}" defer></script>
+    <script src="{{ asset('js/simple-modal.js') }}" defer></script>
+    <script src="{{ asset('js/taginput.js') }}" defer></script>
+    <script src="https://cdn.tiny.cloud/1/lq7e09nr1zvfkk9rgymrak6zoskkyv2dtna24qw94jhuxh22/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
 
@@ -23,15 +27,102 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('fontawesome/css/fontawesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('fontawesome/all.css') }}">
-    <link rel="stylesheet" href="{{ asset('fontawesome/solid.css') }}">
-    <link rel="stylesheet" href="{{ asset('fontawesome/brands.css') }}">
-    <link rel="stylesheet" href="{{ asset('fontawesome/regular.css') }}">
+    <link rel="stylesheet" href="{{ asset('fontawesome/css/all.css') }}">
+    <link rel="stylesheet" href="{{ asset('fontawesome/css/solid.css') }}">
+    <link rel="stylesheet" href="{{ asset('fontawesome/css/brands.css') }}">
+    <link rel="stylesheet" href="{{ asset('fontawesome/css/regular.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/modals.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/taginput.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/simple-modal.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/simple-sidebar.css') }}">
+    <style>
+  html {
+
+    --bg: #FCFCFC;
+    --bg-panel: #EBEBEB;
+    --color-headings: #0077FF;
+    --color-text: #333333;
+}
+
+html[data-theme='dark'] {
+    --bg: #333333;
+    --bg-panel: #434343;
+    --color-headings: #3694FF;
+    --color-text: #B5B5B5;
+}
+
+body {
+    background-color: var(--bg);
+}
+
+.container {
+    color: var(--color-text);
+}
+.bg{
+    background-color: var(--bg-panel);
+    color: var(--color-text);
+
+}
+.up{
+    color: var(--color-text);
+}
+
+
+
+input[type=checkbox]{
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+#lb {
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 52px;
+	height: 27px;
+	background:grey;
+	border-radius: 100px;
+	position: relative;
+}
+
+#lb:after {
+	content: '';
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	width: 20px;
+	height: 20px;
+	background: #fff;
+	border-radius: 90px;
+	transition: 0.3s;
+}
+
+input:checked + #lb {
+	background: var(--color-headings);
+}
+
+input:checked + #lb:after {
+	left: calc(100% - 5px);
+	transform: translateX(-100%);
+}
+
+#lb:active:after {
+	width: 45px;
+}
+
+html.transition,
+html.transition *,
+html.transition *:before,
+html.transition *:after {
+  transition: all 750ms !important;
+  transition-delay: 0 !important;
+}
+    </style>
 </head>
 <body>
     <div id="app">
@@ -96,14 +187,34 @@
                 </div>
                 <br>
                 <div class="list-group list-group-flush">
-
-                <a class="list-group-item list-group-item-action bg-light" href="/email"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-                <a class="list-group-item list-group-item-action bg-light" href="/email/create"><i class="fas fa-envelope"></i>  Send Email</a>
-                <a class="list-group-item list-group-item-action bg-light" href="#"><i class="fas fa-images"></i>  See Templates</a>
+                <i class="list-group-item bg-transparent">
+                    <div class="dropdown">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <a href="">Dashboard</a>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="/email/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard Home</a>
+                          <a class="dropdown-item" href="/email"><i class="fas fa-history"></i> Email History</a>
+                        </div>
+                      </div>
+                </i>
+                <i class="list-group-item bg-transparent">
+                    <i class="fas fa-envelope"></i><a class="ml-2" href="/email/create"> Send Email</a>
+                </i>
+                <i class="list-group-item bg-transparent">
+                    <i class="fas fa-image"></i><a class="ml-2" href="/email/"> See Template</a>
+                </i>
+                <i class="list-group-item bg-transparent">
+                     <div class="toggle-container">
+                        <input type="checkbox" id="switch" name="theme" /><label id="lb" for="switch">Toggle</label>
+                        <small><i class="fas fa-sun"></i>Day / <i class="fas fa-moon"></i>Night</small>
+                    </div>
+                </i>
                 </div>
             </div>
             <div id="page-content-wrapper">
-                <nav class="navbar navbar-expand-md navbar-light bg-secondary justify-content-between mb-5">
+                <nav class="navbar navbar-expand-md navbar-light bg-secondary justify-content-between">
                 <div class="container">
                     <a class="navbar-item ml-2 btn btn-dark" id="menu-toggle"><i class="fas fa-bars"></i></a>
                     <form class="form-check-inline">
@@ -112,8 +223,10 @@
                     </form>
                 </div>
                 </nav>
-                <main class="py-4 mb-5">
-                    @yield('content')
+                <main class="py-4 mb-2">
+                    <div class="container">
+                        @yield('content')
+                    </div>
                 </main>
 
             </div>
@@ -182,6 +295,25 @@
       $("#wrapper").toggleClass("toggled");
     });
   </script>
+<script>
+     var checkbox = document.querySelector('input[name=theme]');
 
+        checkbox.addEventListener('change', function() {
+            if(this.checked) {
+                trans()
+                document.documentElement.setAttribute('data-theme', 'dark')
+            } else {
+                trans()
+                document.documentElement.setAttribute('data-theme', 'light')
+            }
+        })
+
+        let trans = () => {
+            document.documentElement.classList.add('transition');
+            window.setTimeout(() => {
+                document.documentElement.classList.remove('transition')
+            }, 1000)
+        }
+</script>
 </body>
 </html>

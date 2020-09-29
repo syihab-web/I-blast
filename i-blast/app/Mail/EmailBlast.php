@@ -32,6 +32,11 @@ class EmailBlast extends Mailable
      */
     public function build(Request $request)
     {
-        return $this->from($this->data['from'])->subject($request->subject)->view('template.template')->with('data',$this->data);
+        if($request->template == 2){
+            return $this->from($this->data['from'])->subject($request->subject)->view('template.template2')->with('data',$this->data);
+        }
+        else{
+            return $this->from($this->data['from'])->subject($request->subject)->view('template.template')->with('data',$this->data);
+        }
     }
 }
