@@ -77,6 +77,18 @@
               <tr>
                   <td>{{ $value->links() }}</td>
               </tr>
+              <tr>
+                  <td>
+                    <form>
+                      <select name="pagination" id="pagination" class="form-control">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                      </select>
+                    </form>
+                  </td>
+              </tr>
           </table>
     </div>
     <script>
