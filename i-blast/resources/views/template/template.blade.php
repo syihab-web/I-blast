@@ -126,9 +126,6 @@
                     <td style="padding: 20px 0 0 0;">
                       <table class="buttonwrapper" bgcolor="#e05443" border="0" cellspacing="0" cellpadding="0">
                         <tr>
-                          <td class="button" height="45">
-                            <a href="{{ $data['link'] }}">Get Link</a>
-                          </td>
                         </tr>
                       </table>
                     </td>

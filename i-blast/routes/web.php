@@ -30,8 +30,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::patch('password', 'PasswordController@update')->name('user.password.update');
 });
 
+Route::get('/email/dashboard', 'EmailController@dashboard');
 Route::resource('/email', 'EmailController');
 Route::get('/email/{value}', 'EmailController@show');
 Route::post('/email/sendMail', 'EmailController@sendMail');
+
 Route::get('auth/{provider}', 'GoogleController@redirect');
 Route::get('auth/{provider}/callback', 'GoogleController@callback');

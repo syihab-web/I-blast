@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Detail Email')
+
 <style>
     tr{
         padding-left: 10%;
@@ -18,7 +20,6 @@
             <table align="center" class="bg" style="width: 80%;">
                 <tr>
                     <td></td>
-                    <td><img src="{{ asset('assets/image/'.$email['image']) }}" width="100" alt=""></td>
                 </tr>
                 <tr>
                     <td>Id Email</td>
@@ -42,7 +43,7 @@
                 </tr>
                 <tr>
                     <td>Pesan</td>
-                    <td>{{ $email['pesan'] }}</td>
+                    <td> {!! nl2br($email['pesan']) !!}</td>
                 </tr>
                 <tr>
                     <td>

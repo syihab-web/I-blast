@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\EmailBlast;
 use App\Email;
-
+use App\User;
+use DB;
 use function GuzzleHttp\Promise\all;
 
 class EmailController extends Controller
@@ -22,12 +23,15 @@ class EmailController extends Controller
      */
     public function index()
     {
-        $value = Email::all();
+        $value = Email::paginate(10);
         return view('email.index', compact('value'));
     }
 
+
      public function dashboard(){
-        return view('email.dashboard');
+        $users = User::count();
+        $count = Email::count();
+        return view('email.dashboard', compact('count', 'users'));
     }
 
     /**
@@ -58,17 +62,26 @@ class EmailController extends Controller
                     'from' => $request->from,
                     'to' => $request->email,
                     'subject' => $request->subject,
-                    'pesan' => $request->pesan,
-                    'link' => $request->link
+                    'pesan' => $request->pesan
                 ];
 
                 Email::create($data);
-                Mail::to($receiver)->send(new EmailBlast($data));
+               $status = Mail::to($receiver)->send(new EmailBlast($data));
 
         }
 
-        return back();
+            return back()->with('status', 'Email Berhasil Terkirim');
 
+    }
+
+    public function search(Request $request){
+        $value = Email::when($request->search, function ($query) use ($request) {
+            $query->where('to', 'like', "%{$request->search}%")
+                ->orWhere('from', 'like', "%{$request->search}%")
+                ->orWhere('subject', 'like', "%{$request->search}%");
+        })->paginate(10);
+
+        return view('email.index', compact('value'));
     }
 
     /**

@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -21,7 +21,8 @@
     <script src="{{ asset('js/taginput.js') }}" defer></script>
     <script src="https://cdn.tiny.cloud/1/lq7e09nr1zvfkk9rgymrak6zoskkyv2dtna24qw94jhuxh22/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -115,6 +116,7 @@ input:checked + #lb:after {
 	width: 45px;
 }
 
+
 html.transition,
 html.transition *,
 html.transition *:before,
@@ -182,16 +184,16 @@ html.transition *:after {
         <div class="d-flex" id="wrapper">
 
                 <!-- Sidebar -->
-            <div class="bg-light border-right" id="sidebar-wrapper">
+            <div class="bg border-right" id="sidebar-wrapper">
                 <div class="sidebar-heading"><a href="{{ route('profile.edit') }}" class="list-group-item list-group-item-action bg-light"><i class="fas fa-user-circle"></i>  Edit Profile</a>
                 </div>
                 <br>
                 <div class="list-group list-group-flush">
-                <i class="list-group-item bg-transparent">
-                    <div class="dropdown">
+                <i class="list-group-item bg-transparent nav-item">
+                    <div class="dropdown nav-link">
                         <i class="fas fa-tachometer-alt"></i>
-                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <a href="">Dashboard</a>
+                        <button class="btn dropdown-toggle bg" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dashboard
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                           <a class="dropdown-item" href="/email/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard Home</a>
@@ -199,13 +201,13 @@ html.transition *:after {
                         </div>
                       </div>
                 </i>
-                <i class="list-group-item bg-transparent">
-                    <i class="fas fa-envelope"></i><a class="ml-2" href="/email/create"> Send Email</a>
+                <i class="list-group-item bg-transparent nav-item">
+                    <i class="fas fa-envelope ml-3"></i><a class="ml-2" href="/email/create"><button class="btn btn-transparent bg"> Send Email</button></a>
                 </i>
-                <i class="list-group-item bg-transparent">
-                    <i class="fas fa-image"></i><a class="ml-2" href="/email/"> See Template</a>
+                <i class="list-group-item bg-transparent nav-item">
+                    <i class="fas fa-image ml-3"></i><a class="ml-2" href="/email/"><button class="btn btn-transparent bg"> See Template</button></a>
                 </i>
-                <i class="list-group-item bg-transparent">
+                <i class="list-group-item bg-transparent nav-item">
                      <div class="toggle-container">
                         <input type="checkbox" id="switch" name="theme" /><label id="lb" for="switch">Toggle</label>
                         <small><i class="fas fa-sun"></i>Day / <i class="fas fa-moon"></i>Night</small>
@@ -217,9 +219,9 @@ html.transition *:after {
                 <nav class="navbar navbar-expand-md navbar-light bg-secondary justify-content-between">
                 <div class="container">
                     <a class="navbar-item ml-2 btn btn-dark" id="menu-toggle"><i class="fas fa-bars"></i></a>
-                    <form class="form-check-inline">
-                    <input class="form-control mr-sm-2 p-1 pl-2" size="25" type="search" placeholder="Search" aria-label="Search">
-                    <a href="/email/search" class="btn btn-dark"><i class="fas fa-search"></i></a>
+                    <form class="form-check-inline" method="GET" action="/search">
+                    <input class="form-control mr-sm-2 p-1 pl-2 search" name="search" id="search" size="25" type="search" placeholder="Search" aria-label="Search">
+                    <button style="height: 100%;" type="submit" class="btn btn-dark"><i class="fas fa-search"></i></button>
                     </form>
                 </div>
                 </nav>
