@@ -1,11 +1,25 @@
 @extends('layouts.app')
 
+@section('title', 'Send Email')
+
 @section('content')
 <style>
     .progress { position:relative; width:100%; border: 1px solid #7F98B2; padding: 1px; border-radius: 3px; padding-top: 1%; }
     .bar { background-color: #B4F5B4; width:0%; height:25px; border-radius: 3px; }
     .percent { position:absolute; display:inline-block; top:7px; left:48%; color: #7F98B2;}
 </style>
+
+
+@if (session('status'))
+<div class="alert alert-success">
+    {{ session('status') }}
+</div>
+@endif
+@if (session('error'))
+<div class="alert alert-danger">
+    {{ session('error') }}
+</div>
+@endif
 
             <form action="{{ url('/email/sendMail') }}" enctype="multipart/form-data" method="POST">
                 @csrf
@@ -33,15 +47,12 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="link">Insert Link</label>
-                    <input required type="text" name="link" id="link" class="form-control bg" placeholder="" aria-describedby="helpId">
-                </div>
-                <div class="form-group">
                     <label for="link">Attach File</label>
                     <input type="file" name="file" id="link" class="form-control-file bg" placeholder="" aria-describedby="helpId">
                 </div>
                 <br>
                 <button onclick="return confirm('Apakah anda yakin ingin mengirim email ini?')" class="btn btn-success" type="submit">submit</button>
+
             </form>
 
         <script>

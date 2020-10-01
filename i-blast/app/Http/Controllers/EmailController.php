@@ -23,7 +23,7 @@ class EmailController extends Controller
      */
     public function index()
     {
-        $value = Email::all();
+        $value = Email::paginate(10);
         return view('email.index', compact('value'));
     }
 
@@ -62,16 +62,15 @@ class EmailController extends Controller
                     'from' => $request->from,
                     'to' => $request->email,
                     'subject' => $request->subject,
-                    'pesan' => $request->pesan,
-                    'link' => $request->link
+                    'pesan' => $request->pesan
                 ];
 
                 Email::create($data);
-                Mail::to($receiver)->send(new EmailBlast($data));
+               $status = Mail::to($receiver)->send(new EmailBlast($data));
 
         }
 
-        return back();
+            return back()->with('status', 'Email Berhasil Terkirim');
 
     }
 
@@ -80,7 +79,7 @@ class EmailController extends Controller
             $query->where('to', 'like', "%{$request->search}%")
                 ->orWhere('from', 'like', "%{$request->search}%")
                 ->orWhere('subject', 'like', "%{$request->search}%");
-        })->get();
+        })->paginate(10);
 
         return view('email.index', compact('value'));
     }

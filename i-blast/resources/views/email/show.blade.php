@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Detail Email')
+
 <style>
     tr{
         padding-left: 10%;

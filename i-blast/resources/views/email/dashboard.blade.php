@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Dashboard')
+
 @section('content')
 
 <style>
@@ -53,7 +55,7 @@
 
     .btndb{
     border-radius: 4px;
-    background-color:lightcyan;
+    background-color: white;
     border: none;
     color: #000;
     text-align: center;
