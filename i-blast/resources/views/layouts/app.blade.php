@@ -8,6 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="icon" href="{{ asset('company/logo.png') }}">
     <title>@yield('title')</title>
 
     <!-- Scripts -->
@@ -130,7 +131,7 @@ html.transition *:after {
     <div id="app">
      <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/home') }}">
                     <img src="{{ asset('company/logo_2.png') }}" width="80">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -185,7 +186,7 @@ html.transition *:after {
 
                 <!-- Sidebar -->
             <div class="bg border-right" id="sidebar-wrapper">
-                <div class="sidebar-heading"><a href="{{ route('profile.edit') }}" class="list-group-item list-group-item-action bg-light"><i class="fas fa-user-circle"></i>  Edit Profile</a>
+                <div class="sidebar-heading"><a href="{{ route('profile.edit') }}" class="list-group-item list-group-item-action bg"><i class="fas fa-user-circle"></i>  Edit Profile</a>
                 </div>
                 <br>
                 <div class="list-group list-group-flush">

@@ -23,7 +23,7 @@ class EmailController extends Controller
      */
     public function index()
     {
-        $value = Email::paginate(10);
+        $value = Email::paginate(5);
         return view('email.index', compact('value'));
     }
 

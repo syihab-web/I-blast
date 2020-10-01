@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="{{ asset('fontawesome/regular.css') }}">
 
 <!-- Styles -->
+<link rel="icon" href="{{ asset('company/logo.png') }}">
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('css/simple-sidebar.css') }}">

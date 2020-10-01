@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title> welcome page</title>
+	<title>Welcome Page</title>
+    <link rel="icon" href="{{ asset('company/logo.png') }}">
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('fontawesome/js/fontawesome.min.js') }}" defer></script>
     <script src="{{ asset('fontawesome/js/all.js') }}" defer></script>

@@ -15,6 +15,12 @@
 </div>
 @endif
 
+<style>
+  .pointer{
+    cursor:pointer;
+  }
+</style>
+
     <div class="container">
         <div class="jumbotron bg">
             <div class="container">
@@ -29,17 +35,17 @@
                 <th scope="col">No</th>
                 <th scope="col">
                     Email Pengirim
-                    <i class="fas fa-sort-amount-down" onclick="sortTable(0)"></i>
-                    <i class="fas fa-sort-amount-up" onclick="sortTable(0)"></i>
+                    <i class="fas fa-sort-amount-down pointer" onclick="sortTable(0)"></i>
+                    <i class="fas fa-sort-amount-up pointer" onclick="sortTable(0)"></i>
                 </th>
                 <th scope="col">
                     Subjek
-                    <i class="fas fa-sort-amount-down" onclick="sortTable(1)"></i>
-                    <i class="fas fa-sort-amount-up" onclick="sortTable(1)"></i>
+                    <i class="fas fa-sort-amount-down pointer" onclick="sortTable(1)"></i>
+                    <i class="fas fa-sort-amount-up pointer" onclick="sortTable(1)"></i>
                 </th>
                 <th scope="col">Tanggal
-                    <i class="fas fa-sort-amount-down" onclick="sortTable(2)"></i>
-                    <i class="fas fa-sort-amount-up" onclick="sortTable(2)"></i>
+                    <i class="fas fa-sort-amount-down pointer" onclick="sortTable(2)"></i>
+                    <i class="fas fa-sort-amount-up pointer" onclick="sortTable(2)"></i>
                 </th>
                 <th scope="col">Action</th>
               </tr>
