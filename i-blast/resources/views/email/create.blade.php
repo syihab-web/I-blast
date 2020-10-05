@@ -32,7 +32,7 @@
                     <input type="text" required name="email" class="form-control bg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter receivers email">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail2">subject</label>
+                    <label for="exampleInputEmail2">Subject</label>
                     <input type="text" required name="subject" class="form-control bg" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="subject">
                 </div>
                 <div class="form-group">

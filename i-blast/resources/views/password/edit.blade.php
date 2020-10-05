@@ -66,7 +66,7 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-primary" onClick="showAlert()">
                                         Change Password
                                     </button>
                                 </div>
@@ -88,5 +88,15 @@
 			}
 		});
 	});
+</script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    function showAlert() {
+        swal({
+            icon: 'info',
+            title: 'Password berhasil diganti!',
+            timer: 1500
+        });
+    }
 </script>
 @endsection
