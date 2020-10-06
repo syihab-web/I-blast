@@ -25,7 +25,7 @@
                 @csrf
                 <div class="form-group">
                     <label for="exampleInputEmail1">From</label>
-                    <input type="email" required name="from" class="form-control bg" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter your email">
+                    <input type="text" required name="from" class="form-control bg" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter your name or email">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">To</label>

@@ -10,7 +10,7 @@
 </div>
 @endif
 @if (session('delete'))
-<div class="alert alert-danger">
+<div class="alert alert-success">
     {{ session('delete') }}
 </div>
 @endif
@@ -64,7 +64,7 @@
                         <form action="/email/{{ $values->id }}" method="POST">
                             @method('delete')
                             @csrf
-                            <button type="submit" class="btn btn-danger" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="left" data-content="Delete Email History?" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')"><i class="fas fa-trash-alt"></i></button>
+                            <button type="submit" class="btn btn-danger" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="left" data-content="Delete Email History?" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')" onclick="showAlert()"><i class="fas fa-trash-alt"></i></button>
                         </form>
                     </div>
                 </td>
@@ -100,13 +100,13 @@
         var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
         table = document.getElementById("table");
         switching = true;
-        
+
         dir = "asc";
-        
+
         while (switching) {
           switching = false;
           rows = table.rows;
-          
+
           for (i = 1; i < (rows.length - 1); i++) {
             shouldSwitch = false;
             x = rows[i].getElementsByTagName("TD")[n];
@@ -135,5 +135,15 @@
           }
         }
       }
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        function showAlert() {
+            swal({
+                icon: 'info',
+                title: 'Data berhasil dihapus!',
+                timer: 1500
+            });
+        }
     </script>
 @endsection

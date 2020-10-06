@@ -185,7 +185,7 @@ html.transition *:after {
         <div class="d-flex" id="wrapper">
 
                 <!-- Sidebar -->
-            <div class="bg border-right" id="sidebar-wrapper">
+            <div class="bg" id="sidebar-wrapper">
                 <div class="sidebar-heading"><a href="{{ route('profile.edit') }}" class="list-group-item list-group-item-action bg"><i class="fas fa-user-circle"></i>  Edit Profile</a>
                 </div>
                 <br>
