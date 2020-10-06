@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\EmailBlast;
 use App\Email;
-
+use App\User;
+use DB;
 use function GuzzleHttp\Promise\all;
 
 class EmailController extends Controller
@@ -22,8 +23,15 @@ class EmailController extends Controller
      */
     public function index()
     {
-        $value = Email::all();
+        $value = Email::paginate(10);
         return view('email.index', compact('value'));
+    }
+
+
+     public function dashboard(){
+        $users = User::count();
+        $count = Email::count();
+        return view('email.dashboard', compact('count', 'users'));
     }
 
     /**
@@ -50,44 +58,41 @@ class EmailController extends Controller
     public function sendMail(Request $request){
         $receivers = explode(" ",$request->email);
         foreach($receivers as $receiver){
-                if($request->hasFile('image') || $request->hasFile('file')){
-                    $file = $request->file('image');
-                    $file2 = $request->file('file');
-                    $extention = $file->getClientOriginalExtension();
-                    $extention2 = $file2->getClientOriginalExtension();
-                    $filename = time() . '.' . $extention;
-                    $file->move('assets/image/', $filename);
-                    $filename2 = time() . '.' . $extention2;
-                    $file2->move('assets/file/', $filename2);
-
                 $data = [
                     'from' => $request->from,
                     'to' => $request->email,
                     'subject' => $request->subject,
-                    'pesan' => $request->pesan,
-                    'image' => $filename,
-                    'file' => $filename2,
-                    'link' => $request->link
+                    'pesan' => $request->pesan
                 ];
 
                 Email::create($data);
-                Mail::to($receiver)->send(new EmailBlast($data));
-            }
+               $status = Mail::to($receiver)->send(new EmailBlast($data));
+
         }
 
-        return back();
+            return back()->with('status', 'Email Berhasil Terkirim');
 
+    }
+
+    public function search(Request $request){
+        $value = Email::when($request->search, function ($query) use ($request) {
+            $query->where('to', 'like', "%{$request->search}%")
+                ->orWhere('from', 'like', "%{$request->search}%")
+                ->orWhere('subject', 'like', "%{$request->search}%");
+        })->paginate(10);
+
+        return view('email.index', compact('value'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param \App\Email $email
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Email $email)
     {
-        //
+        return view('email.show', compact('email'));
     }
 
     /**
@@ -121,6 +126,9 @@ class EmailController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Email::destroy($id);
+        return redirect('/email')->with('delete', "Data berhasil dihapus!");
     }
+
+
 }

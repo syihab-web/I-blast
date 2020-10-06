@@ -2,12 +2,14 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="Content-Type"  content="text/html charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <link rel="icon" href="{{ asset('company/logo.png') }}">
+    <title>@yield('title')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -17,18 +19,22 @@
     <script src="{{ asset('fontawesome/js/brands.js') }}" defer></script>
     <script src="{{ asset('fontawesome/js/regular.js') }}" defer></script>
     <script src="{{ asset('js/simple-modal.js') }}" defer></script>
+    <script src="{{ asset('js/taginput.js') }}" defer></script>
+    <script src="https://cdn.tiny.cloud/1/lq7e09nr1zvfkk9rgymrak6zoskkyv2dtna24qw94jhuxh22/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('fontawesome/css/fontawesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('fontawesome/all.css') }}">
-    <link rel="stylesheet" href="{{ asset('fontawesome/solid.css') }}">
-    <link rel="stylesheet" href="{{ asset('fontawesome/brands.css') }}">
-    <link rel="stylesheet" href="{{ asset('fontawesome/regular.css') }}">
+    <link rel="stylesheet" href="{{ asset('fontawesome/css/all.css') }}">
+    <link rel="stylesheet" href="{{ asset('fontawesome/css/solid.css') }}">
+    <link rel="stylesheet" href="{{ asset('fontawesome/css/brands.css') }}">
+    <link rel="stylesheet" href="{{ asset('fontawesome/css/regular.css') }}">
     <link rel="stylesheet" href="{{ asset('css/modals.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/taginput.css') }}">
     <link rel="stylesheet" href="{{ asset('css/simple-modal.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 
@@ -111,6 +117,7 @@ input:checked + #lb:after {
 	width: 45px;
 }
 
+
 html.transition,
 html.transition *,
 html.transition *:before,
@@ -124,7 +131,7 @@ html.transition *:after {
     <div id="app">
      <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/home') }}">
                     <img src="{{ asset('company/logo_2.png') }}" width="80">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -178,31 +185,30 @@ html.transition *:after {
         <div class="d-flex" id="wrapper">
 
                 <!-- Sidebar -->
-            <div class="bg" id="sidebar-wrapper">
-                <div class="sidebar-heading"><a href="" class="list-group-item bg-transparent"><i class="fas fa-user-circle"></i>  Edit Profile</a>
+            <div class="bg border-right" id="sidebar-wrapper">
+                <div class="sidebar-heading"><a href="{{ route('profile.edit') }}" class="list-group-item list-group-item-action bg"><i class="fas fa-user-circle"></i>  Edit Profile</a>
                 </div>
                 <br>
                 <div class="list-group list-group-flush">
-                <i class="list-group-item bg-transparent">
-                    <div class="dropdown">
+                <i class="list-group-item bg-transparent nav-item">
+                    <div class="dropdown nav-link">
                         <i class="fas fa-tachometer-alt"></i>
-                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <a href="">Dashboard</a>
+                        <button class="btn dropdown-toggle bg" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dashboard
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="#"><i class="fas fa-tachometer-alt"></i> Dashboard Home</a>
+                          <a class="dropdown-item" href="/email/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard Home</a>
                           <a class="dropdown-item" href="/email"><i class="fas fa-history"></i> Email History</a>
-                          <a class="dropdown-item" href="#">Something else here</a>
                         </div>
                       </div>
                 </i>
-                <i class="list-group-item bg-transparent">
-                    <i class="fas fa-envelope"></i><a class="ml-2" href="/email/create"> Send Email</a>
+                <i class="list-group-item bg-transparent nav-item">
+                    <i class="fas fa-envelope ml-3"></i><a class="ml-2" href="/email/create"><button class="btn btn-transparent bg"> Send Email</button></a>
                 </i>
-                <i class="list-group-item bg-transparent">
-                    <i class="fas fa-image"></i><a class="ml-2" href="/email/"> See Template</a>
+                <i class="list-group-item bg-transparent nav-item">
+                    <i class="fas fa-image ml-3"></i><a class="ml-2" href="/email/"><button class="btn btn-transparent bg"> See Template</button></a>
                 </i>
-                <i class="list-group-item bg-transparent">
+                <i class="list-group-item bg-transparent nav-item">
                      <div class="toggle-container">
                         <input type="checkbox" id="switch" name="theme" /><label id="lb" for="switch">Toggle</label>
                         <small><i class="fas fa-sun"></i>Day / <i class="fas fa-moon"></i>Night</small>
@@ -214,9 +220,9 @@ html.transition *:after {
                 <nav class="navbar navbar-expand-md navbar-light bg-secondary justify-content-between">
                 <div class="container">
                     <a class="navbar-item ml-2 btn btn-dark" id="menu-toggle"><i class="fas fa-bars"></i></a>
-                    <form class="form-check-inline">
-                    <input class="form-control mr-sm-2 p-1 pl-2" size="25" type="search" placeholder="Search" aria-label="Search">
-                    <a href="/email/search" class="btn btn-dark"><i class="fas fa-search"></i></a>
+                    <form class="form-check-inline" method="GET" action="/search">
+                    <input class="form-control mr-sm-2 p-1 pl-2 search" name="search" id="search" size="25" type="search" placeholder="Search" aria-label="Search">
+                    <button style="height: 100%;" type="submit" class="btn btn-dark"><i class="fas fa-search"></i></button>
                     </form>
                 </div>
                 </nav>

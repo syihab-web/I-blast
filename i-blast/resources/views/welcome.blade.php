@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title> welcome page</title>
+	<title>Welcome Page</title>
+    <link rel="icon" href="{{ asset('company/logo.png') }}">
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('fontawesome/js/fontawesome.min.js') }}" defer></script>
     <script src="{{ asset('fontawesome/js/all.js') }}" defer></script>
@@ -50,7 +51,7 @@
 <div class="container">
 <div class="row">
     <div class="col-md-6">
-        <img src="{{ asset('company/images2.png') }}">
+        <img src="{{ asset('company/email.png') }}" width="100%">
     </div>
     <div class="col-md-6 text-center">
         <p class="promo-title">For Better Email Marketing</p>

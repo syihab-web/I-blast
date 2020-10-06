@@ -126,9 +126,6 @@
                     <td style="padding: 20px 0 0 0;">
                       <table class="buttonwrapper" bgcolor="#e05443" border="0" cellspacing="0" cellpadding="0">
                         <tr>
-                          <td class="button" height="45">
-                            <a href="{{ $data['link'] }}">Get Link</a>
-                          </td>
                         </tr>
                       </table>
                     </td>
@@ -146,12 +143,11 @@
       </tr>
       <tr>
         <td class="innerpadding borderbottom">
-          <img class="fix" src="{{ asset('assets/image/'.$data['image']) }}" width="100%" border="0" alt="" />
-        </td>
+          </td>
       </tr>
       <tr>
         <td class="innerpadding bodycopy">
-            {{ $data['pesan'] }}
+            {!! nl2br($data['pesan']) !!}
         </td>
       </tr>
       <tr>
