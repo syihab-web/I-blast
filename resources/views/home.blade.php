@@ -24,6 +24,15 @@
     <title>Landing Page</title>
   </head>
   <body>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @if (session('status'))
+    <script>
+            swal({
+                icon: 'info',
+                title: 'Kritik Dan Saran Berhasil dikirim!',
+            });
+    </script>
+    @endif
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
@@ -34,7 +43,9 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ml-auto" >
             <a class="nav-link active" href="/home">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-link" href="/email">Dashboard</a>
+            @if(Auth::user() && Auth::user()->roles == '1')
+            <a class="nav-link" href="/email/dashboard">Dashboard</a>
+            @endif
             <a class="nav-link" href="/email/create">Send Email</a>
             <a class="nav-link" href="#about" >About</a>
           </div>
@@ -47,7 +58,7 @@
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
         <h1 class="display-4">For <span> better </span> <br> EMAIL MARKETING</h1>
-        <a href="" class="btn btn-success tombol"> Gabung Sekarang</a>
+        <a href="/email/dashboard" class="btn btn-success tombol"> Gabung Sekarang</a>
       </div>
     </div>
     <!-- End Jumbotron -->
@@ -144,6 +155,13 @@
                     <p>Sistem analis</p>
                   </figcaption>
             </figure>
+            <figure class="figure">
+                <img src="{{ asset('company/hilman.jpg') }}" class="figure-img img-fluid rounded-circle menonjol" alt="...">
+                <figcaption class="figure-caption">
+                    <h5>Hilman</h5>
+                    <p>Front End Developer</p>
+                  </figcaption>
+            </figure>
             </div>
           </div>
           I-Blast dibuat oleh para peserta praktek kerja lapangan di PT INOVINDO Digital Media. Para peserta yang terlibat dalam project ini beranggotakan siswa dan siswi SMKN 4 BANDUNG. SMKN 4 BANDUNG adalah Sekolah Menengah Kejuruan yang memiliki kelompok bidang keahlian Ketenaga Listrikan, Audio Video, dan Teknik Komputer dan Informatika. Keberadaannya didukung oleh dunia usaha dan dunia industri, baik dalam pembelajaran maupun penyerapan lulusannya, salah satunya oleh PT Inovindo Digital Media. Pembelajaran teori dan praktek tidak hanya dilakukan di dalam kelas tetapi dilakukan di dunia industri melalui praktek kerja industri di perusahaan-perusahaan yang relevan.
@@ -186,14 +204,18 @@
 
                 <div class="col-lg-6 ">
 
-              <form>
+              <form method="POST" action="/sendSaran" enctype="multipart/form-data">
+                @csrf
                 <div class="form-group mt-3">
                   <label for="nama ">Nama</label>
-                  <input type="text" class="form-control footer-rounded" id="nama" placeholder="Masukkan nama anda disini">
+                  <input type="text" name="nama" class="form-control footer-rounded" id="nama" placeholder="Masukkan nama anda disini">
                 </div>
                 <div class="form-group">
                   <label for="alamat">Kritik atau Saran</label>
-                  <textarea name="curhatan" id="curhatan" class="form-control footer-rounded"></textarea>
+                  <textarea name="saran" id="curhatan" class="form-control footer-rounded"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-outline-success footer-rounded" onclick="return confirm('Apakah anda yakin ingin mengirim saran?')">Kirim</button>
                 </div>
               </form>
 

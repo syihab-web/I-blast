@@ -4,15 +4,19 @@
 
 @section('content')
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @if (session('status'))
 <div class="alert alert-success">
     {{ session('status') }}
 </div>
 @endif
 @if (session('delete'))
-<div class="alert alert-success">
-    {{ session('delete') }}
-</div>
+<script>
+        swal({
+            icon: 'info',
+            title: 'Data berhasil dihapus!',
+        });
+</script>
 @endif
 
 <style>
@@ -22,13 +26,9 @@
 </style>
 
     <div class="container">
-        <div class="jumbotron bg">
-            <div class="container">
-              <h1 class="display">Welcome</h1>
-              <h4 class="lead">Selamat datang di Dashboard I-Blast.</h4>
-            </div>
-          </div>
+       <h2>Email History</h2>
 
+          <div class="table-responsive">
           <table class="table table-hover" id="table">
             <thead>
               <tr class="up">
@@ -73,23 +73,12 @@
               @endforeach
             </tbody>
           </table>
+        </div>
           <table align="center">
               <tr>
                   <td>{{ $value->links() }}</td>
               </tr>
-              <tr>
-                  <td>
-                    <form>
-                      <select name="pagination" id="pagination" class="form-control">
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                      </select>
-                    </form>
-                  </td>
-              </tr>
-          </table>
+           </table>
     </div>
     <script>
       $(document).ready(function(){

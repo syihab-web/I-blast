@@ -1,0 +1,55 @@
+.carousel-item{
+    height: 32rem;
+    background: #121212;
+    color: #463852;
+    position: relative;
+}
+#container1{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-bottom: 50px;
+}
+#container2{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-bottom: 50px;
+}
+#container3{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-bottom: 50px;
+}
+/* .btn{
+    background-color: none;
+    color: #ffde59;
+    border: 1px solid #ffde59;
+}
+.btn:hover{
+    background-color: #ffde59;
+    color: none;
+} */
+.overlay-image{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.5;
+}
+#carou1{
+    background: url("../image/carousel2.jpg");
+}
+#carou2{
+    background: url("../image/carousel2.jpg");
+}
+#carou3{
+    background: url("../image/carousel1.jpg");
+}

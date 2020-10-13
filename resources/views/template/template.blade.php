@@ -111,6 +111,9 @@
               <td height="115" style="padding: 0 20px 20px 0;">
                 <img class="fix" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/article1.png" width="115" height="115" border="0" alt="" />
               </td>
+              <td height="115" style="padding: 0 20px 20px 0;">
+                <h1>Hello Customers</h1>
+              </td>
             </tr>
           </table>
           <!--[if (gte mso 9)|(IE)]>

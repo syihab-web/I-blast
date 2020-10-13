@@ -24,6 +24,19 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="module" src="https://unpkg.com/dark-mode-toggle"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{{ asset('js/sb-admin-2.min.js') }}" defer></script>
+
+<!-- Page level plugins -->
+<script src="{{ asset('vendor/vendor/chart.js/Chart.min.js') }}" defer></script>
+
+<!-- Page level custom scripts -->
+<script src="{{ asset('js/demo/chart-area-demo.js') }}" defer></script>
+<script src="{{ asset('js/demo/chart-pie-demo.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -190,25 +203,27 @@ html.transition *:after {
                 </div>
                 <br>
                 <div class="list-group list-group-flush">
-                <i class="list-group-item bg-transparent nav-item">
-                    <div class="dropdown nav-link">
-                        <i class="fas fa-tachometer-alt"></i>
-                        <button class="btn dropdown-toggle bg" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dashboard
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="/email/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard Home</a>
-                          <a class="dropdown-item" href="/email"><i class="fas fa-history"></i> Email History</a>
-                        </div>
-                      </div>
-                </i>
-                <i class="list-group-item bg-transparent nav-item">
+                @if(Auth::user() && Auth::user()->roles == '1')
+                <li class="list-group-item bg-transparent nav-item">
+                    <i class="fas fa-tachometer-alt ml-3"></i><a class="ml-2" href="/email/dashboard"><button class="btn btn-transparent bg"> Dashboard</button></a>
+                </li>
+                <li class="list-group-item bg-transparent nav-item">
+                    <i class="fas fa-pen-square ml-3"></i><a class="ml-2" href="/saran"><button class="btn btn-transparent bg"> Kritik dan saran</button></a>
+                </li>
+                <li class="list-group-item bg-transparent nav-item">
+                    <i class="fas fa-users ml-3"></i><a class="ml-2" href="/manageUsers"><button class="btn btn-transparent bg"> Manage Users</button></a>
+                </li>
+                @endif
+                <li class="list-group-item bg-transparent nav-item">
                     <i class="fas fa-envelope ml-3"></i><a class="ml-2" href="/email/create"><button class="btn btn-transparent bg"> Send Email</button></a>
-                </i>
-                <i class="list-group-item bg-transparent nav-item">
-                    <i class="fas fa-image ml-3"></i><a class="ml-2" href="/email/"><button class="btn btn-transparent bg"> See Template</button></a>
-                </i>
-                <i class="list-group-item bg-transparent nav-item">
+                </li>
+                <li class="list-group-item bg-transparent nav-item">
+                    <i class="fas fa-history ml-3"></i><a class="ml-2" href="/email"><button class="btn btn-transparent bg"> Email History</button></a>
+                </li>
+                <li class="list-group-item bg-transparent nav-item">
+                    <i class="fas fa-image ml-3"></i><a class="ml-2" href="/email/seeTemplate"><button class="btn btn-transparent bg"> See Template</button></a>
+                </li>
+                <li class="list-group-item bg-transparent nav-item">
                      <div class="toggle-container">
                         <input type="checkbox" id="switch" name="theme" /><label id="lb" for="switch">Toggle</label>
                         <small><i class="fas fa-sun"></i>Day / <i class="fas fa-moon"></i>Night</small>

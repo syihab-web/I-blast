@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 use App\Mail\EmailBlast;
 use App\Email;
 use App\User;
+use App\Saran;
 use DB;
 use function GuzzleHttp\Promise\all;
 
@@ -23,15 +25,24 @@ class EmailController extends Controller
      */
     public function index()
     {
-        $value = Email::paginate(10);
-        return view('email.index', compact('value'));
+        $value = Email::where('user', 'like', Auth::user()->id)->paginate(10);
+            return view('email.index', compact('value'));
+
     }
 
 
      public function dashboard(){
+        $saran = Saran::count();
         $users = User::count();
         $count = Email::count();
-        return view('email.dashboard', compact('count', 'users'));
+
+        if(Auth::user()->roles == '1'){
+            return view('email.dashboard', compact('count', 'users', 'saran'));
+        }
+        else{
+            return redirect()->back();
+        }
+
     }
 
     /**
@@ -62,7 +73,9 @@ class EmailController extends Controller
                     'from' => $request->from,
                     'to' => $request->email,
                     'subject' => $request->subject,
-                    'pesan' => $request->pesan
+                    'pesan' => $request->pesan,
+                    'file' => $request->file,
+                    'user' => $request->user
                 ];
 
                 Email::create($data);
@@ -74,14 +87,39 @@ class EmailController extends Controller
 
     }
 
-    public function search(Request $request){
-        $value = Email::when($request->search, function ($query) use ($request) {
-            $query->where('to', 'like', "%{$request->search}%")
-                ->orWhere('from', 'like', "%{$request->search}%")
-                ->orWhere('subject', 'like', "%{$request->search}%");
-        })->paginate(10);
+    public function sendAgain(Request $request){
+        $receivers = explode(" ",$request->email);
+        foreach($receivers as $receiver){
+                $data = [
+                    'from' => $request->from,
+                    'to' => $request->email,
+                    'subject' => $request->subject,
+                    'pesan' => $request->pesan,
+                    'file' => $request->file,
+                    'user' => $request->user
 
-        return view('email.index', compact('value'));
+                ];
+
+               $status = Mail::to($receiver)->send(new EmailBlast($data));
+
+        }
+
+            return back()->with('status', 'Email Berhasil Terkirim');
+    }
+
+    public function search(Request $request){
+        if(Auth::user()->roles == '1'){
+            $value = Email::when($request->search, function ($query) use ($request) {
+                $query->where('to', 'like', "%{$request->search}%")
+                    ->orWhere('from', 'like', "%{$request->search}%")
+                    ->orWhere('subject', 'like', "%{$request->search}%");
+            })->paginate(10);
+            return view('email.index', compact('value'));
+
+        }
+        else{
+            return redirect('/email')->with('danger','sssssss');
+        }
     }
 
     /**

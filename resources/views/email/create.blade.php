@@ -7,20 +7,42 @@
     .progress { position:relative; width:100%; border: 1px solid #7F98B2; padding: 1px; border-radius: 3px; padding-top: 1%; }
     .bar { background-color: #B4F5B4; width:0%; height:25px; border-radius: 3px; }
     .percent { position:absolute; display:inline-block; top:7px; left:48%; color: #7F98B2;}
+    #myProgress {
+  width: 100%;
+  background-color: #ddd;
+}
+
+#myBar {
+  width: 10%;
+  height: 30px;
+  background-color: #4CAF50;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
 </style>
 
 
 @if (session('status'))
-<div class="alert alert-success">
-    {{ session('status') }}
-</div>
-@endif
-@if (session('error'))
-<div class="alert alert-danger">
-    {{ session('error') }}
-</div>
+<script>
+        swal({
+            icon: 'info',
+            title: 'Email berhasil dikirim!',
+        });
+</script>
 @endif
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+@if (session('danger'))
+<script>
+        swal({
+            icon: 'danger',
+            title: 'Maaf anda tidak mempunyai akses untuk fitur ini!',
+        });
+</script>
+@endif
+<h2>Send Email</h2>
+<hr>
             <form action="{{ url('/email/sendMail') }}" enctype="multipart/form-data" method="POST">
                 @csrf
                 <div class="form-group">
@@ -36,6 +58,9 @@
                     <input type="text" required name="subject" class="form-control bg" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="subject">
                 </div>
                 <div class="form-group">
+                    <input type="hidden" value="{{ Auth::user()->id }}" required name="user" class="form-control bg" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="subject">
+                </div>
+                <div class="form-group">
                     <label for="pesan">text</label>
                     <textarea id="pesan" class="bg" name="pesan" cols="30" rows="10"></textarea>
                 </div>
@@ -48,15 +73,41 @@
                 </div>
                 <div class="form-group">
                     <label for="link">Attach File</label>
-                    <input type="file" name="file" id="link" class="form-control-file bg" placeholder="" aria-describedby="helpId">
+                    <input type="file" name="file" id="fileName" accept=".jpg,.jpeg,.png,.cdr,.docx,.xlsx,.txt,.pdf,.ppt,.mp3,.mp4" onchange="validateFileType()" class="form-control-file bg" placeholder="" aria-describedby="helpId">
                     <div class="alert alert-danger" role="alert">
                         Danger!!!, Don't send Zip or Rar Attachments!
                       </div>
                 </div>
+                <div class="form-group">
+                    <div id="myProgress">
+                        <div id="myBar">0%</div>
+                      </div>
+                </div>
                 <br>
-                <button onclick="return confirm('Apakah anda yakin ingin mengirim email ini?')" class="btn btn-success" type="submit">submit</button>
+                <button onload="move()" onclick="return confirm('Apakah anda yakin ingin mengirim email ini?')" class="btn btn-success" type="submit">submit</button>
 
             </form>
+            <script>
+                var i = 0;
+                function move() {
+                  if (i == 0) {
+                    i = 1;
+                    var elem = document.getElementById("myBar");
+                    var width = 10;
+                    var id = setInterval(frame, 0);
+                    function frame() {
+                      if (width >= 100) {
+                        clearInterval(id);
+                        i = 0;
+                      } else {
+                        width++;
+                        elem.style.width = width + "%";
+                        elem.innerHTML = width  + "%";
+                      }
+                    }
+                  }
+                }
+                </script>
 
         <script>
                 var editor_config = {

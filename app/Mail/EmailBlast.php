@@ -34,21 +34,21 @@ class EmailBlast extends Mailable
     {
         if($request->file == null){
             if($request->template == 2){
-                return $this->from($this->data['from'])->subject($request->subject)->view('template.template2')->with('data',$this->data);
+                return $this->subject($request->subject)->view('template.template2')->with('data',$this->data);
             }
             else{
-                return $this->from($this->data['from'])->subject($request->subject)->view('template.template')->with('data',$this->data);
+                return $this->subject($request->subject)->view('template.template')->with('data',$this->data);
             }
         }
         else{
             if($request->template == 2){
-                return $this->from($this->data['from'])->subject($request->subject)->attach($request->file('file')->getRealPath(), [
+                return $this->subject($request->subject)->attach($request->file('file')->getRealPath(), [
                     'as' => $request->file('file')->getClientOriginalName(),
                     'mime' => $request->file('file')->getMimeType()
                 ])->view('template.template2')->with('data',$this->data);
             }
             else{
-                return $this->from($this->data['from'])->subject($request->subject)->attach($request->file('file')->getRealPath(), [
+                return $this->subject($request->subject)->attach($request->file('file')->getRealPath(), [
                     'as' => $request->file('file')->getClientOriginalName(),
                     'mime' => $request->file('file')->getMimeType()
                 ])->view('template.template')->with('data',$this->data);
