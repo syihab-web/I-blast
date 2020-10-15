@@ -215,6 +215,9 @@ html.transition *:after {
                 </li>
                 @endif
                 <li class="list-group-item bg-transparent nav-item">
+                    <i class="fas fa-address-book ml-3"></i><a class="ml-2" href="/daftaremail"><button class="btn btn-transparent bg"> Daftar Email</button></a>
+                </li>
+                <li class="list-group-item bg-transparent nav-item">
                     <i class="fas fa-envelope ml-3"></i><a class="ml-2" href="/email/create"><button class="btn btn-transparent bg"> Send Email</button></a>
                 </li>
                 <li class="list-group-item bg-transparent nav-item">

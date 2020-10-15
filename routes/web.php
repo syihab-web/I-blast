@@ -47,3 +47,7 @@ Route::get('/saran', 'SaranController@index');
 Route::post('/sendSaran', 'SaranController@store');
 Route::get('auth/{provider}', 'GoogleController@redirect');
 Route::get('auth/{provider}/callback', 'GoogleController@callback');
+
+Route::get('/daftaremail', 'DaftarEmailController@index');
+Route::get('/daftaremail/export_excel', 'DaftarEmailController@export_excel');
+Route::post('/daftaremail/import_excel', 'DaftarEmailController@import_excel');

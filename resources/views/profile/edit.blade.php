@@ -77,7 +77,7 @@
 <script>
     function showAlert() {
         swal({
-            icon: 'info',
+            icon: 'success',
             title: 'Data berhasil dirubah!',
             timer: 1500
         });

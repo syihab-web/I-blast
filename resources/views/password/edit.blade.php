@@ -93,7 +93,7 @@
 <script>
     function showAlert() {
         swal({
-            icon: 'info',
+            icon: 'success',
             title: 'Password berhasil diganti!',
             timer: 1500
         });
