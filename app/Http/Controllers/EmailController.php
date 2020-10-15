@@ -16,7 +16,7 @@ class EmailController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'verified']);
     }
     /**
      * Display a listing of the resource.
@@ -109,7 +109,7 @@ class EmailController extends Controller
 
     public function search(Request $request){
         if(Auth::user()->roles == '1'){
-            $value = Email::when($request->search, function ($query) use ($request) {
+            $value = Email::where('user', 'like', Auth::user()->id)->when($request->search, function ($query) use ($request) {
                 $query->where('to', 'like', "%{$request->search}%")
                     ->orWhere('from', 'like', "%{$request->search}%")
                     ->orWhere('subject', 'like', "%{$request->search}%");

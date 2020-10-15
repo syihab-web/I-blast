@@ -24,6 +24,7 @@
     },
     "dependencies": {
         "dark-mode-toggle": "^0.7.3",
+        "nodemailer": "^6.4.14",
         "tinymce": "^5.4.2"
     }
 }

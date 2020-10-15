@@ -57,6 +57,7 @@ class UsersController extends Controller
         $rule = [
             'name' => 'required:string:max:255',
             'email' => 'required:string:email:max:255:unique:users',
+            'email_verified_at' => 'requied',
             'password' => 'required:string:min:8:confirmed',
             'roles' => 'required'
         ];
@@ -65,6 +66,7 @@ class UsersController extends Controller
         $status = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
+            'email_verified_at' => $request['verify'],
             'password' => Hash::make($request['password']),
             'roles' => $request['roles']
         ]);

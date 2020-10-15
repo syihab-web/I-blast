@@ -15,6 +15,10 @@
         <input type="email" required name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter receivers email">
     </div>
     <div class="form-group">
+        <label for="exampleInputEmail1">Email Verified At</label>
+        <input type="date" required name="verify" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter receivers email">
+    </div>
+    <div class="form-group">
         <label for="exampleInputEmail2">Password</label>
         <input type="password" required name="password" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Password">
     </div>

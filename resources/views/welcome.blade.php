@@ -49,7 +49,7 @@
 	<!------------------banner selection------------------------------->
 <section id="banner">
 <div class="container">
-<div class="row">
+    <div class="row">
     <div class="col-md-6">
         <img src="{{ asset('company/thumbnail.png') }}" width="100%">
     </div>
@@ -57,7 +57,6 @@
         <p class="promo-title">For Better Email Marketing</p>
     <p>I-Blast merupakan website yang bertujuan untuk mempermudah pengiriman Email marketing Secara Gratis, Cepat, dan Praktis.</p>
     <a href="/home" class="btn btn-outline-success">Get Started</a>
-
 </div>
 </div>
 </div>
