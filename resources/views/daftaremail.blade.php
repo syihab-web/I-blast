@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Daftar Email')
+
 @section('content')
 <!DOCTYPE html>
 <html>
@@ -40,15 +42,16 @@
  
 							{{ csrf_field() }}
  
-							<label>Pilih file .csv / .xls / .xlsx</label>
+							<label>Pilih file .xls / .xlsx</label>
 							<div class="form-group">
 								<input type="file" name="file" required="required">
+								<input type="hidden" name="user" value="{{ Auth::user()->id }}">
 							</div>
  
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 							<button type="submit" class="btn btn-primary">Import</button>
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 						</div>
 					</div>
 				</form>

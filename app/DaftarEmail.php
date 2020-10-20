@@ -8,5 +8,5 @@ class DaftarEmail extends Model
 {
     protected $table = "daftaremail";
  
-    protected $fillable = ['email','nama'];
+    protected $fillable = ['email', 'nama', 'userid'];
 }
