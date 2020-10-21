@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\DaftarEmail;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\ToModel;
 
 class DaftarEmailImport implements ToModel
@@ -14,9 +15,11 @@ class DaftarEmailImport implements ToModel
     */
     public function model(array $row)
     {
+        $user = Auth::user()->id;
         return new DaftarEmail([
             'email' => $row[1],
             'nama' => $row[2],
+            'userid' => $user,
         ]);
     }
 }

@@ -30,7 +30,6 @@ class EmailController extends Controller
 
     }
 
-
      public function dashboard(){
         $saran = Saran::count();
         $users = User::count();
