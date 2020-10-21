@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
  
 use App\DaftarEmail;
+use Illuminate\Support\Facades\Auth;
 
 use Session;
  
@@ -20,10 +21,15 @@ class DaftarEmailController extends Controller
         $this->middleware('auth');
 	}
 	
+	/**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
 	public function index()
 	{
-		$daftaremail = DaftarEmail::all();
-		return view('daftaremail',['daftaremail'=>$daftaremail]);
+		$daftaremail = DaftarEmail::where('userid', 'like', Auth::user()->id)->get();
+		return view('daftaremail', compact('daftaremail'));
 	}
  
 	public function export_excel()

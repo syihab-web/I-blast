@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\DaftarEmail;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
 class DaftarEmailExport implements FromCollection
@@ -12,6 +13,6 @@ class DaftarEmailExport implements FromCollection
     */
     public function collection()
     {
-        return DaftarEmail::all();
+        return DaftarEmail::where('userid', 'like', Auth::user()->id)->get();
     }
 }

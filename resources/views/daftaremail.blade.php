@@ -45,7 +45,6 @@
 							<label>Pilih file .xls / .xlsx</label>
 							<div class="form-group">
 								<input type="file" name="file" required="required">
-								<input type="hidden" name="user" value="{{ Auth::user()->id }}">
 							</div>
  
 						</div>
@@ -72,11 +71,11 @@
 			</thead>
 			<tbody>
 				@php $i=1 @endphp
-				@foreach($daftaremail as $e)
+				@foreach($daftaremail as $daftar)
 				<tr>
 					<td>{{ $i++ }}</td>
-					<td>{{$e->email}}</td>
-					<td>{{$e->nama}}</td>
+					<td>{{ $daftar->email }}</td>
+					<td>{{ $daftar->nama }}</td>
 				</tr>
 				@endforeach
 			</tbody>
