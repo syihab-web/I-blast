@@ -85,8 +85,8 @@
 					<td>{{ $daftar->email }}</td>
 					<td>{{ $daftar->nama }}</td>
 					<td>
-						<a href="/daftaremail/edit/{{ $daftar->id }}" class="btn btn-primary mr-1">Edit</a>
-						<a href="/daftaremail/hapus/{{ $daftar->id }}" class="btn btn-danger">Hapus</a>
+						<a href="/daftaremail/edit/{{ $daftar->id }}" class="btn btn-primary mr-1"><i class="fas fa-edit"></i></a>
+						<a href="/daftaremail/hapus/{{ $daftar->id }}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
 					</td>
 				</tr>
 				@endforeach
