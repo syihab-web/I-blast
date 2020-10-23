@@ -55,4 +55,35 @@ class DaftarEmailController extends Controller
  
 		return redirect('/daftaremail');
 	}
+
+	public function edit($id)
+	{
+		$daftaremail = DaftarEmail::find($id);
+		return view('daftaremail_edit', ['daftaremail' => $daftaremail]);
+	}
+
+	public function update($id, Request $request)
+	{
+		$this->validate($request,[
+		'email' => 'required',
+		'nama' => 'required'
+		]);
+	
+		$daftaremail = DaftarEmail::find($id);
+		$daftaremail->email = $request->email;
+		$daftaremail->nama = $request->nama;
+		$daftaremail->save();
+
+		Session::flash('sukses','Data berhasil diubah!');
+		return redirect('/daftaremail');
+	}
+
+	public function delete($id)
+	{
+		$daftaremail = DaftarEmail::find($id);
+		$daftaremail->delete();
+
+		Session::flash('delete','Data berhasil dihapus!');
+		return redirect('/daftaremail');
+	}
 }

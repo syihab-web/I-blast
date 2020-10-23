@@ -51,3 +51,6 @@ Route::get('auth/{provider}/callback', 'GoogleController@callback');
 Route::get('/daftaremail', 'DaftarEmailController@index');
 Route::get('/daftaremail/export_excel', 'DaftarEmailController@export_excel');
 Route::post('/daftaremail/import_excel', 'DaftarEmailController@import_excel');
+Route::get('/daftaremail/edit/{id}', 'DaftarEmailController@edit');
+Route::put('/daftaremail/update/{id}', 'DaftarEmailController@update');
+Route::get('/daftaremail/hapus/{id}', 'DaftarEmailController@delete');

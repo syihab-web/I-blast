@@ -25,6 +25,13 @@
 			<strong>{{ $sukses }}</strong>
 		</div>
 		@endif
+
+		@if ($delete = Session::get('delete'))
+		<div class="alert alert-danger alert-block">
+			<button type="button" class="close" data-dismiss="alert">×</button> 
+			<strong>{{ $delete }}</strong>
+		</div>
+		@endif
  
 		<button type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#importExcel">
 			IMPORT
@@ -67,6 +74,7 @@
 					<th>No</th>
 					<th>Email</th>
 					<th>Nama</th>
+					<th>Action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -76,6 +84,10 @@
 					<td>{{ $i++ }}</td>
 					<td>{{ $daftar->email }}</td>
 					<td>{{ $daftar->nama }}</td>
+					<td>
+						<a href="/daftaremail/edit/{{ $daftar->id }}" class="btn btn-primary mr-1">Edit</a>
+						<a href="/daftaremail/hapus/{{ $daftar->id }}" class="btn btn-danger">Hapus</a>
+					</td>
 				</tr>
 				@endforeach
 			</tbody>
