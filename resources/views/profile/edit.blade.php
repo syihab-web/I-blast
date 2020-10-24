@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Edit Profile')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -77,7 +79,7 @@
 <script>
     function showAlert() {
         swal({
-            icon: 'info',
+            icon: 'success',
             title: 'Data berhasil dirubah!',
             timer: 1500
         });

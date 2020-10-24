@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Change Password')
+
 @section('content')
 <div class="container">
         <div class="row justify-content-center">
@@ -93,7 +95,7 @@
 <script>
     function showAlert() {
         swal({
-            icon: 'info',
+            icon: 'success',
             title: 'Password berhasil diganti!',
             timer: 1500
         });
