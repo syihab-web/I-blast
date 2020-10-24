@@ -55,96 +55,122 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/simple-sidebar.css') }}">
+
     <style>
-  html {
+        html {
 
-    --bg: #FCFCFC;
-    --bg-panel: #EBEBEB;
-    --color-headings: #0077FF;
-    --color-text: #333333;
-}
+          --bg: #FCFCFC;
+          --bg-panel: #EBEBEB;
+          --color-headings: #0077FF;
+          --color-text: #333333;
+      }
 
-html[data-theme='dark'] {
-    --bg: #333333;
-    --bg-panel: #434343;
-    --color-headings: #3694FF;
-    --color-text: #B5B5B5;
-}
+      html[data-theme='dark'] {
+          --bg: #333333;
+          --bg-panel: #434343;
+          --color-headings: #3694FF;
+          --color-text: #B5B5B5;
+      }
 
-body {
-    background-color: var(--bg);
-}
+      body {
+          background-color: var(--bg);
+      }
 
-.container {
-    color: var(--color-text);
-}
-.bg{
-    background-color: var(--bg-panel);
-    color: var(--color-text);
+      .container {
+          color: var(--color-text);
+      }
+      .bg{
+          background-color: var(--bg-panel);
+          color: var(--color-text);
 
-}
-.up{
-    color: var(--color-text);
-}
+      }
+      .up{
+          color: var(--color-text);
+      }
+
+      /* SWITCH TOGGLE */
+
+      /* The swirch - the box around the slider */
+      .switch{
+      position: relative;
+      display: inline-block;
+      width: 55px;
+      height: 30px;
+      }
+
+      /* Hide default HTML checkbox */
+      .switch input{
+          opacity: 0;
+          width: 0;
+          height: 0;
+      }
+
+      /* The Slider */
+      .slider{
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #ccc;
+          -webkit-transition: .4s;
+          transition: .4s;
+      }
+
+      .slider:before{
+          position: absolute;
+          content: "";
+          height: 22px;
+          width: 22px;
+          cursor: pointer;
+          left: 4px;
+          bottom: 4px;
+          background-color: white;
+          -webkit-transition: .4s;
+          transition: .4s;
+      }
+
+      input:checked + .slider{
+          background-color: #4caf50;
+      }
+
+
+      input:focus + .slider{
+          box-shadow: 0 0 1px #2196F3;
+      }
+
+      input:checked + .slider:before{
+          -webkit-transform: translateX(26px);
+          -ms-transform: translateX(26px);
+          transform: translateX(26px);
+      }
+
+      /* Rounded slider */
+      .slider.round{
+          border-radius: 34px;
+      }
+
+      .slider.round:before{
+          border-radius: 50%;
+      }
 
 
 
-input[type=checkbox]{
-	height: 0;
-	width: 0;
-	visibility: hidden;
-}
-
-#lb {
-	cursor: pointer;
-	text-indent: -9999px;
-	width: 52px;
-	height: 27px;
-	background:grey;
-	border-radius: 100px;
-	position: relative;
-}
-
-#lb:after {
-	content: '';
-	position: absolute;
-	top: 3px;
-	left: 3px;
-	width: 20px;
-	height: 20px;
-	background: #fff;
-	border-radius: 90px;
-	transition: 0.3s;
-}
-
-input:checked + #lb {
-	background: var(--color-headings);
-}
-
-input:checked + #lb:after {
-	left: calc(100% - 5px);
-	transform: translateX(-100%);
-}
-
-#lb:active:after {
-	width: 45px;
-}
-
-
-html.transition,
-html.transition *,
-html.transition *:before,
-html.transition *:after {
-  transition: all 750ms !important;
-  transition-delay: 0 !important;
-}
-    </style>
+      html.transition,
+      html.transition *,
+      html.transition *:before,
+      html.transition *:after {
+        transition: all 750ms !important;
+        transition-delay: 0 !important;
+      }
+          </style>
 </head>
 <body>
     <div id="app">
      <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/home') }}">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ asset('company/logo_2.png') }}" width="80">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -223,12 +249,15 @@ html.transition *:after {
                 <li class="list-group-item bg-transparent nav-item">
                     <i class="fas fa-image ml-3"></i><a class="ml-2" href="/email/seeTemplate"><button class="btn btn-transparent bg"> See Template</button></a>
                 </li>
-                <li class="list-group-item bg-transparent nav-item">
-                     <div class="toggle-container">
-                        <input type="checkbox" id="switch" name="theme" /><label id="lb" for="switch">Toggle</label>
-                        <small><i class="fas fa-sun"></i>Day / <i class="fas fa-moon"></i>Night</small>
-                    </div>
-                </i>
+                <i class="list-group-item bg-transparent nav-item">
+                    <div class="toggle-container">
+                    <label class="switch">
+                       <input type="checkbox" name="theme  ">
+                       <span class="slider round"></span>
+                   </label>
+                       <small><i class="fas fa-sun"></i>Day / <i class="fas fa-moon"></i>Night</small>
+                   </div>
+               </i>
                 </div>
             </div>
             <div id="page-content-wrapper">
@@ -306,32 +335,39 @@ html.transition *:after {
 		</footer>
     </div>
 
-    <!-- Menu Toggle Script -->
-  <script>
+   <!-- Menu Toggle Script -->
+<script>
     $("#menu-toggle").click(function(e) {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
-  </script>
-<script>
-     var checkbox = document.querySelector('input[name=theme]');
 
-        checkbox.addEventListener('change', function() {
-            if(this.checked) {
-                trans()
-                document.documentElement.setAttribute('data-theme', 'dark')
-            } else {
-                trans()
-                document.documentElement.setAttribute('data-theme', 'light')
-            }
-        })
+    const toggleSwitch = document.querySelector('.switch input[type="checkbox"]');
 
-        let trans = () => {
-            document.documentElement.classList.add('transition');
-            window.setTimeout(() => {
-                document.documentElement.classList.remove('transition')
-            }, 1000)
+    function switchTheme(e) {
+    if (e.target.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        // Menyimpan Preferensi
+        localStorage.setItem('theme', 'dark');
+    }
+    else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        // Menyimpan Preferensi
+        localStorage.setItem('theme', 'light');
+    }
+}
+toggleSwitch.addEventListener('change', switchTheme, false);
+
+    // Supaya modenya tidak berubah ubah
+    const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+    if (currentTheme) {
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        if (currentTheme === 'dark') {
+            toggleSwitch.checked = true;
         }
+    }
+
 </script>
+
 </body>
 </html>

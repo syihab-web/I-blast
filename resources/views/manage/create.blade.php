@@ -3,7 +3,9 @@
 @section('title', 'Tambah User')
 
 @section('content')
-<div class="card p-5 bg">
+<h2>Tambahkan admin/user</h2>
+<hr>
+
 <form action="{{ url('/manageUsers/store') }}" enctype="multipart/form-data" method="POST">
     @csrf
     <div class="form-group">
@@ -40,5 +42,4 @@
     <button onclick="return confirm('Apakah anda yakin ingin menambah user ini?')" class="btn btn-success" type="submit">submit</button>
 
 </form>
-</div>
 @endsection

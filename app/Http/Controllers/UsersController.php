@@ -79,6 +79,19 @@ class UsersController extends Controller
         }
     }
 
+
+    public function search(Request $request){
+        if(Auth::user()->roles == '1'){
+            $value = User::where('name', 'like', Auth::user()->id)->when($request->search, function ($query) use ($request) {
+                $query->where('email', 'like', "%{$request->search}%")->orWhere('name', 'like', "%{$request->search}%");
+            })->paginate(10);
+            return view('manage.index', compact('value'));
+
+        }
+        else{
+            return redirect('/manage.index')->with('danger','sssssss');
+        }
+    }
     /**
      * Display the specified resource.
      *

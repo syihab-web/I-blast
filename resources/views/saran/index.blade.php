@@ -17,7 +17,7 @@
         <div class="row">
             @foreach ($saran as $item)
 
-            <div class="col-md-4 mt-3 ml-1">
+            <div class="col-md-4 mt-3">
                 <div class="card bg" style="width: 18rem;">
                 <img class="card-img-top" src="{{ asset('company/note.png') }}" alt="Card image cap">
                     <div class="card-body">

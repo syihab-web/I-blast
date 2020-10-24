@@ -15,31 +15,40 @@
 <link rel="stylesheet" href="{{ asset('fontawesome/solid.css') }}">
 <link rel="stylesheet" href="{{ asset('fontawesome/brands.css') }}">
 <link rel="stylesheet" href="{{ asset('fontawesome/regular.css') }}">
+<link rel="stylesheet" href="{{ asset('Sign-In/css/login.css') }}">
+
 
 <!-- Styles -->
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('css/simple-sidebar.css') }}">
+
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
-
-                <div class="card-body">
-                    @if (session('resent'))
+        <div class="col-md-8" id="verif">
+            <div  class="mt-4">
+                <div id="card-content">
+                    <div id="card-title">
+                        <h4 style="color: white">Verify Your Email Address</h4>
+                        <hr style="color: ">
+                        @if (session('resent'))
                         <div class="alert alert-success" role="alert">
                             {{ __('A fresh verification link has been sent to your email address.') }}
                         </div>
-                    @endif
+                        @endif
 
-                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }},
+                        <h5 style="color: green">
+                            {{ __('Before proceeding, please check your email for a verification link.') }}
+                        {{ __('If you did not receive the email') }},
+                        </h5>
+                    </div>
+                    <hr>
                     <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                         @csrf
-                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
+                        <center><button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.</center>
                     </form>
                 </div>
+            </div>
             </div>
         </div>
     </div>

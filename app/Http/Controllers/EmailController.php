@@ -25,7 +25,7 @@ class EmailController extends Controller
      */
     public function index()
     {
-        $value = Email::where('user', 'like', Auth::user()->id)->paginate(10);
+        $value = Email::where('user', 'like', Auth::user()->id)->paginate(20);
             return view('email.index', compact('value'));
 
     }
@@ -74,13 +74,11 @@ class EmailController extends Controller
                     'to' => $request->email,
                     'subject' => $request->subject,
                     'pesan' => $request->pesan,
-                    'file' => $request->file,
                     'user' => $request->user
                 ];
 
-                Email::create($data);
-               $status = Mail::to($receiver)->send(new EmailBlast($data));
 
+                Email::create($data);
         }
 
             return back()->with('status', 'Email Berhasil Terkirim');
