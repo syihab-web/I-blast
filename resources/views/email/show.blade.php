@@ -47,16 +47,9 @@
                 {!! nl2br($email['pesan']) !!}
             </textarea>
         </div>
-        <div class="form-group">
-            <label for="">Select Template</label>
-            <select name="template" id="" class="form-control bg">
-                <option value="1">Blast Template</option>
-                <option value="2">Sky</option>
-            </select>
-        </div>
+
         <div class="form-group">
             <a href="/email" class="btn btn-primary">Back</a>
-            <button onload="move()" onclick="return confirm('Apakah anda yakin ingin mengirim email ini?')" class="btn btn-success" type="submit">send again</button>
         </div>
     </form>
     <script>

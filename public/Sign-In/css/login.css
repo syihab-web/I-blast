@@ -11,6 +11,11 @@ body{
     height: 100%;
 }
 
+#verif{
+    border: 3px solid green;
+    border-radius: 10px;
+}
+
 .form-container{
     border: 3px solid #4caf50;
     border-radius: 25px;
@@ -94,24 +99,24 @@ h1{
     background-color: #3B5998;
     color: white;
   }
-  
+
   .twitter {
     background-color: #55ACEE;
     color: white;
   }
-  
+
   .google {
     background-color: #dd4b39;
     color: white;
   }
-  
+
 .href{
     color: #ACACAC;
-} 
+}
 .href:hover{
     color: #4caf50;
     border: none;
-} 
+}
 
 small{
     color: #ACACAC;
@@ -159,13 +164,13 @@ input[type="checkbox"]{
 }
 
 input:checked + label{
-    color: #4caf50;  
+    color: #4caf50;
   }
 
 .sign-in{
     margin: 0 auto;
     margin-top: 30px;
-}  
+}
 
 #submit{
     width: 100%;
@@ -197,8 +202,8 @@ input:checked + label{
         font-size:  17px;
         line-height: 20px;
         text-decoration: none;
-    
-    
+
+
         text-align: center;
         /* margin: 0 auto; */
     }

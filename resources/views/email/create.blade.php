@@ -21,7 +21,8 @@
   color: white;
 }
 </style>
-
+<link rel="stylesheet" href="{{ asset('css/progress.css') }}">
+<link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
 
 @if (session('status'))
 <script>
@@ -43,15 +44,15 @@
 @endif
 <h2>Send Email</h2>
 <hr>
-            <form action="{{ url('/email/sendMail') }}" enctype="multipart/form-data" method="POST">
-                @csrf
+            <form action="http://127.0.0.1:8081/email/sendEmail" method="POST" enctype="multipart/form-data">
+               @csrf
                 <div class="form-group">
                     <label for="exampleInputEmail1">From</label>
                     <input type="text" required name="from" class="form-control bg" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter your name or email">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">To</label>
-                    <input type="text" required name="email" class="form-control bg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter receivers email">
+                    <input type="file" required name="email" accept=".csv, .xls, .xlsx" class="form-control-file bg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter receivers email">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail2">subject</label>
@@ -61,54 +62,17 @@
                     <input type="hidden" value="{{ Auth::user()->id }}" required name="user" class="form-control bg" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="subject">
                 </div>
                 <div class="form-group">
-                    <label for="pesan">text</label>
+                    <label for="pesan">Message</label>
                     <textarea id="pesan" class="bg" name="pesan" cols="30" rows="10"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="">Select Template</label>
-                    <select name="template" id="" class="form-control bg">
-                        <option value="1">Blast Template</option>
-                        <option value="2">Sky</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="link">Attach File</label>
-                    <input type="file" name="file" id="fileName" accept=".jpg,.jpeg,.png,.cdr,.docx,.xlsx,.txt,.pdf,.ppt,.mp3,.mp4" onchange="validateFileType()" class="form-control-file bg" placeholder="" aria-describedby="helpId">
-                    <div class="alert alert-danger" role="alert">
-                        Danger!!!, Don't send Zip or Rar Attachments!
-                      </div>
-                </div>
-                <div class="form-group">
-                    <div id="myProgress">
-                        <div id="myBar">0%</div>
-                      </div>
+                    <label for="file">Attachment</label>
+                    <input type="file" class="form-control-file bg" name="file" id="attach" accept=".png, .jpg, .jpeg, .txt, .xls, .ppt, .docx, .pdf">
                 </div>
                 <br>
-                <button onload="move()" onclick="return confirm('Apakah anda yakin ingin mengirim email ini?')" class="btn btn-success" type="submit">submit</button>
-
+               <input onclick="send()" type="submit" class="btn btn-success" value="submit" id="submit" name="submit">
             </form>
-            <script>
-                var i = 0;
-                function move() {
-                  if (i == 0) {
-                    i = 1;
-                    var elem = document.getElementById("myBar");
-                    var width = 10;
-                    var id = setInterval(frame, 0);
-                    function frame() {
-                      if (width >= 100) {
-                        clearInterval(id);
-                        i = 0;
-                      } else {
-                        width++;
-                        elem.style.width = width + "%";
-                        elem.innerHTML = width  + "%";
-                      }
-                    }
-                  }
-                }
-                </script>
-
+            <script src="https://cdn.pubnub.com/pubnub-3.7.13.min.js"></script>
         <script>
                 var editor_config = {
                 path_absolute : "/",
@@ -145,4 +109,20 @@
 
             tinymce.init(editor_config);
         </script>
+        <script src="{{ asset('js/progress.js') }}" defer></script>
+        {{-- <script>
+            $( 'form' ).submit(function ( e ) {
+            var data, xhr;
+
+            data = new FormData();
+
+            xhr = new XMLHttpRequest();
+
+            xhr.open( 'POST', 'http://127.0.0.1:8081/', true );
+            xhr.onreadystatechange = function ( response ) {};
+            xhr.send( data );
+
+            e.preventDefault();
+        });
+        </script> --}}
             @endsection

@@ -37,8 +37,8 @@
     <div class="container">
 
         <nav class="navbar navbar-light bg">
-            <form class="form-inline">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search User..." aria-label="Search">
+            <form class="form-inline" method="GET" action="/searchUsers">
+              <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search User..." aria-label="Search">
               <button class="btn btn-secondary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
             </form>
 
@@ -78,7 +78,6 @@
                 <td>{{ $values['created_at'] }}</td>
                 <td>
                     <div class="btn-group" role="group">
-                        <a href="/manageUsers/{{ $values->id }}" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="left" data-content="Show Data User?" class="btn btn-primary mr-1"><i class="fas fa-eye"></i></a>
                         <form action="/manageUsers/{{ $values->id }}" method="POST">
                             @method('delete')
                             @csrf

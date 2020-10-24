@@ -16,7 +16,7 @@ class EmailController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'verified']);
     }
     /**
      * Display a listing of the resource.
@@ -25,7 +25,7 @@ class EmailController extends Controller
      */
     public function index()
     {
-        $value = Email::where('user', 'like', Auth::user()->id)->paginate(10);
+        $value = Email::where('user', 'like', Auth::user()->id)->paginate(20);
             return view('email.index', compact('value'));
 
     }
@@ -73,13 +73,11 @@ class EmailController extends Controller
                     'to' => $request->email,
                     'subject' => $request->subject,
                     'pesan' => $request->pesan,
-                    'file' => $request->file,
                     'user' => $request->user
                 ];
 
-                Email::create($data);
-               $status = Mail::to($receiver)->send(new EmailBlast($data));
 
+                Email::create($data);
         }
 
             return back()->with('status', 'Email Berhasil Terkirim');
@@ -108,7 +106,7 @@ class EmailController extends Controller
 
     public function search(Request $request){
         if(Auth::user()->roles == '1'){
-            $value = Email::when($request->search, function ($query) use ($request) {
+            $value = Email::where('user', 'like', Auth::user()->id)->when($request->search, function ($query) use ($request) {
                 $query->where('to', 'like', "%{$request->search}%")
                     ->orWhere('from', 'like', "%{$request->search}%")
                     ->orWhere('subject', 'like', "%{$request->search}%");

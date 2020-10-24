@@ -57,6 +57,7 @@ class UsersController extends Controller
         $rule = [
             'name' => 'required:string:max:255',
             'email' => 'required:string:email:max:255:unique:users',
+            'email_verified_at' => 'requied',
             'password' => 'required:string:min:8:confirmed',
             'roles' => 'required'
         ];
@@ -65,6 +66,7 @@ class UsersController extends Controller
         $status = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
+            'email_verified_at' => $request['verify'],
             'password' => Hash::make($request['password']),
             'roles' => $request['roles']
         ]);
@@ -77,6 +79,19 @@ class UsersController extends Controller
         }
     }
 
+
+    public function search(Request $request){
+        if(Auth::user()->roles == '1'){
+            $value = User::where('name', 'like', Auth::user()->id)->when($request->search, function ($query) use ($request) {
+                $query->where('email', 'like', "%{$request->search}%")->orWhere('name', 'like', "%{$request->search}%");
+            })->paginate(10);
+            return view('manage.index', compact('value'));
+
+        }
+        else{
+            return redirect('/manage.index')->with('danger','sssssss');
+        }
+    }
     /**
      * Display the specified resource.
      *

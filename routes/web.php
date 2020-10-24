@@ -19,7 +19,7 @@ Route::get('/email/seeTemplate', function () {
     return view('seeTemplate');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -38,10 +38,11 @@ Route::resource('/manageUsers', 'UsersController');
 Route::post('manageUsers/store', 'UsersController@store');
 Route::get('/email/dashboard', 'EmailController@dashboard');
 Route::get('/search', 'EmailController@search');
+Route::get('/searchUsers', 'UsersController@search');
 Route::resource('/email', 'EmailController');
 Route::resource('/saran', 'SaranController');
 Route::get('/email/{value}', 'EmailController@show');
-Route::post('/email/sendMail', 'EmailController@sendMail');
+Route::post('/email/sendEmail', 'EmailController@sendMail');
 Route::post('/email/sendAgain', 'EmailController@sendAgain');
 Route::get('/saran', 'SaranController@index');
 Route::post('/sendSaran', 'SaranController@store');
