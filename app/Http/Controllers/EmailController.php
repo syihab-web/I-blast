@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Mail\EmailBlast;
 use App\Email;
 use App\User;
+use App\DaftarEmail;
 use App\Saran;
 use DB;
 use function GuzzleHttp\Promise\all;
@@ -34,12 +35,13 @@ class EmailController extends Controller
         $saran = Saran::count();
         $users = User::count();
         $count = Email::count();
+        $daftar = DaftarEmail::count();
 
         if(Auth::user()->roles == '1'){
-            return view('email.dashboard', compact('count', 'users', 'saran'));
+            return view('email.dashboard', compact('count', 'users', 'saran', 'daftar'));
         }
         else{
-            return view('email.dashboard', compact('count', 'users', 'saran'));
+            return view('email.dashboard', compact('count', 'users', 'saran', 'daftar'));
         }
 
     }
