@@ -21,7 +21,7 @@ Route::get('/email/seeTemplate', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'EmailController@dashboard');
 
 Route::group(['middleware' => 'auth'], function () {
 
