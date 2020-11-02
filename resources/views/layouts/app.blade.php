@@ -225,14 +225,14 @@
 
                 <!-- Sidebar -->
             <div class="bg" id="sidebar-wrapper">
-                <div class="sidebar-heading"><a href="{{ route('profile.edit') }}" class="list-group-item list-group-item-action bg"><i class="fas fa-user-circle"></i>  Edit Profile</a>
+                <div class="sidebar-heading"><a href="{{ route('profile.edit') }}" class="list-group-item list-group-item-action bg"><i class="fas fa-user-circle"></i> Edit Profile</a>
                 </div>
                 <br>
                 <div class="list-group list-group-flush">
-                @if(Auth::user() && Auth::user()->roles == '1')
                 <li class="list-group-item bg-transparent nav-item">
                     <i class="fas fa-tachometer-alt ml-3"></i><a class="ml-2" href="/email/dashboard"><button class="btn btn-transparent bg"> Dashboard</button></a>
                 </li>
+                @if(Auth::user() && Auth::user()->roles == '1')
                 <li class="list-group-item bg-transparent nav-item">
                     <i class="fas fa-pen-square ml-3"></i><a class="ml-2" href="/saran"><button class="btn btn-transparent bg"> Kritik dan saran</button></a>
                 </li>

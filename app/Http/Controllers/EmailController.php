@@ -39,7 +39,7 @@ class EmailController extends Controller
             return view('email.dashboard', compact('count', 'users', 'saran'));
         }
         else{
-            return redirect()->back();
+            return view('email.dashboard', compact('count', 'users', 'saran'));
         }
 
     }

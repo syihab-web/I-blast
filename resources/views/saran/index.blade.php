@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'kritik dan saran')
+@section('title', 'Kritik dan Saran')
 
 @section('content')
 
@@ -21,7 +21,7 @@
                 <div class="card bg" style="width: 18rem;">
                 <img class="card-img-top" src="{{ asset('company/note.png') }}" alt="Card image cap">
                     <div class="card-body">
-                    <h5 class="card-title">From : {{ $item->nama }}</h5>
+                    <h6 class="card-title">From : {{ $item->nama }} ({{ $item->email }})</h6>
                     <p class="card-text">{{ $item->saran }}</p>
                         <form action="/saran/{{ $item->id }}" method="POST">
                             @method('delete')

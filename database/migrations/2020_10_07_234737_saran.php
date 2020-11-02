@@ -16,6 +16,7 @@ class Saran extends Migration
         Schema::create('saran', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
+            $table->string('email');
             $table->string('saran');
             $table->timestamps();
         });

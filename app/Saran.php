@@ -8,5 +8,5 @@ class Saran extends Model
 {
     protected $table = 'saran';
 
-    protected $fillable = ['nama', 'saran'];
+    protected $fillable = ['nama', 'email', 'saran'];
 }

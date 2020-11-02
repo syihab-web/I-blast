@@ -43,9 +43,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ml-auto" >
             <a class="nav-link active" href="/home">Home <span class="sr-only">(current)</span></a>
-            @if(Auth::user() && Auth::user()->roles == '1')
             <a class="nav-link" href="/email/dashboard">Dashboard</a>
-            @endif
             <a class="nav-link" href="/email/create">Send Email</a>
             <a class="nav-link" href="#about" >About</a>
           </div>
@@ -210,9 +208,13 @@
                   <label for="nama ">Nama</label>
                   <input type="text" name="nama" class="form-control footer-rounded" id="nama" placeholder="Masukkan nama anda disini">
                 </div>
+                <div class="form-group mt-3">
+                  <label for="email">Email</label>
+                  <input type="email" name="email" class="form-control footer-rounded" id="email" placeholder="Masukkan email anda disini">
+                </div>
                 <div class="form-group">
                   <label for="alamat">Kritik atau Saran</label>
-                  <textarea name="saran" id="curhatan" class="form-control footer-rounded"></textarea>
+                  <textarea name="saran" id="curhatan" class="form-control footer-rounded" placeholder="Kritik dan saran"></textarea>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-outline-success footer-rounded" onclick="return confirm('Apakah anda yakin ingin mengirim saran?')">Kirim</button>
