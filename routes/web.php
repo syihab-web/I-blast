@@ -1,5 +1,5 @@
 <?php
-
+use App\Artikel;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,12 +12,31 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $artikel    = Artikel::orderBy('updated_at','desc')->paginate(3);
+    return view('welcome', compact('artikel'));
+
 });
 
 Route::get('/email/seeTemplate', function () {
     return view('seeTemplate');
 });
+
+// Route Artikel
+Route::get('/lihatArtikel', 'ArtikelController@index');
+Route::get('/buatArtikel', 'ArtikelController@buat');
+Route::post('/proses_buatArtikel', 'ArtikelController@proses_buat');
+Route::get('/detailArtikel/{slug}', 'ArtikelController@detail');
+Route::get('/editArtikel/{id}', 'ArtikelController@edit');
+Route::put('/proses_buatArtikel/{id}', 'ArtikelController@proses_edit');
+Route::get('/hapusArtikel/{id}', 'ArtikelController@hapus' );
+Route::get('/lihatSampah', 'ArtikelController@lihat_sampah');
+Route::get('/pulihkanSampah/{id}', 'ArtikelController@pulih_sampah' );
+Route::delete('/hapusSampah/{id}', 'ArtikelController@hapus_sampah' );
+// End Route Artikel
+
+Route::resource('/pengumuman', 'PengumumanController');
+
+Route::post('/pengumuman/store', 'PengumumanController@store');
 
 Auth::routes(['verify' => true]);
 
@@ -48,10 +67,5 @@ Route::get('/saran', 'SaranController@index');
 Route::post('/sendSaran', 'SaranController@store');
 Route::get('auth/{provider}', 'GoogleController@redirect');
 Route::get('auth/{provider}/callback', 'GoogleController@callback');
-
-Route::get('/daftaremail', 'DaftarEmailController@index');
-Route::get('/daftaremail/export_excel', 'DaftarEmailController@export_excel');
-Route::post('/daftaremail/import_excel', 'DaftarEmailController@import_excel');
-Route::get('/daftaremail/edit/{id}', 'DaftarEmailController@edit');
-Route::put('/daftaremail/update/{id}', 'DaftarEmailController@update');
-Route::get('/daftaremail/hapus/{id}', 'DaftarEmailController@delete');
+Route::get('/getTemplate1', 'TemplateController@getTemplate1');
+Route::get('/getTemplate2', 'TemplateController@getTemplate2');

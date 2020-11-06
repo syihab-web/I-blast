@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login i-blast</title>
+    <title>Masuk i-blast</title>
 
     <!-- Fontawesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <!-- link CSS ku -->
-    <link rel="stylesheet" href="{{ asset('Sign-In/css/login.css') }}">
+        <link rel="stylesheet" href="{{ asset('Sign-In/css/login.css') }}">
 
     <!-- Link Font -->
     <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@700;900&display=swap" rel="stylesheet">
@@ -25,11 +25,11 @@
             <div class="col-md-4">
               <form class="form-container" method="POST" action="{{ route('login') }}">
                 @csrf
-                <h1>{{ __('Login') }}</h1>
+                <h1>Masuk</h1>
 
                 <!-- Email Address -->
                 <div class="form-group">
-                  <label for="email"class="tulisan-biasa" >{{ __('E-Mail Address') }}</label>
+                  <label for="email"class="tulisan-biasa" >Alamat Email</label>
                   <input id="email" type="email" class="inputan @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  required autocomplete="email" autofocus autocomplete="off">
 
                   @error('email')
@@ -38,13 +38,13 @@
                     </span>
                   @enderror
 
-                  <small id="emailHelp" class="form-text text-muted">Harap Masukkan E-Mail yang anda gunakan saat Sign-Up</small>
+                  <small id="emailHelp" class="form-text text-muted">Harap Masukkan E-Mail yang anda gunakan saat Registrasi</small>
                 </div>
                 <!-- Ahkir Email Address -->
 
                 <!-- Password -->
                 <div class="form-group">
-                  <label for="password" class="tulisan-biasa">{{ __('Password') }}</label>
+                  <label for="password" class="tulisan-biasa">Sandi</label>
                   <input id="password"  type="password" class="inputan @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                   @error('password')
@@ -57,14 +57,20 @@
 
                 <div class="custom-control custom-checkbox checkbox">
                   <input type="checkbox" class="custom-control-input form-checkbox" id="customCheck1">
-                  <label class="custom-control-label" for="customCheck1" style="color: #ACACAC;">Show Password</label>
+                  <label class="custom-control-label" for="customCheck1" style="color: #ACACAC;">Lihat Sandi</label>
                 </div>
 
                 <div class="custom-control custom-checkbox checkbox">
                   <input class="custom-control-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                  <label class="custom-control-label" for="remember" style="color: #ACACAC;">{{ __('Remember Me') }}</label>
+                  <label class="custom-control-label" for="remember" style="color: #ACACAC;">Ingat Saya</label>
                 </div>
                 <!-- Akhir Password -->
+
+                <div class="col-lg-12 col-xs-12 col-md-12 text-center">
+                    <div id="submit">
+                      <button type="submit" class="btn btn-outline-success container">{{ __('Masuk') }}</button>
+                    </div>
+                  </div>
 
                 <div class="container"  id="emailHelp2" >
                   <div class="row justify-content-center">
@@ -82,14 +88,10 @@
                     </div>
                 <!--Akhir Pilihan Media Sosial -->
 
-                    <div class="col-lg-12 col-xs-12 col-md-12 text-center">
-                      <div id="submit">
-                        <button type="submit" class="btn btn-outline-success container">{{ __('Login') }}</button>
-                      </div>
-                    </div>
+
 
                     <div class="sign-in">
-                      <small  class="form-text text-muted">Belum Punya Akun? <a href="{{ url('/register') }}" class="href">Sign-Up</a>
+                      <small  class="form-text text-muted">Belum Punya Akun? <a href="{{ url('/register') }}" class="href">Registrasi</a>
                       </small>
                     </div>
 

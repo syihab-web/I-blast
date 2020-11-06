@@ -17,6 +17,21 @@ const conn = mysql.createConnection({
     database: 'i_blast'
   });
 
+var PubNub = require("pubnub");
+
+var pubnub = new PubNub({
+    subscribe_key: 'demo', // always required
+    publish_key: 'demo'	// only required if publishing
+});
+
+function send_percentage(percentage) {
+    pubnub.publish({
+        channel: "progress-bar",
+        message: { "value": percentage },
+        callback: function (m) { console.log(m) }
+    });
+}
+
   conn.connect((err) =>{
     if(err) throw err;
     console.log('Mysql Connected...');
@@ -47,9 +62,11 @@ if(req.url === "/email/sendEmail" && req.method === "POST"){
         try{
             data = JSON.stringify(files.email);
             POST = fields;
-            attach = files.attach;
+            attach = JSON.stringify(files.attach);
             console.log("parsed1 : "+data);
             data = JSON.parse(data);
+            attach = JSON.parse(attach);
+            console.log("Path Attach : "+attach.path);
             console.log("Parsed2 : "+data);
             console.log(data.path);
             fs.rename(data.path,file,function(err){
@@ -106,7 +123,12 @@ if(req.url === "/email/sendEmail" && req.method === "POST"){
                 to: env.email,
                 subject:POST.subject,
                 html:POST.pesan,
-                attachments: attach
+                attachments: [
+                    {
+                        filename : attach.name,
+                        path : attach.path
+                    }
+                ]
             };
             smtpConfig.sendMail(mailOpts, function(error, response) {
                 //Email not sent
@@ -154,9 +176,13 @@ if(req.url === "/email/sendEmail" && req.method === "POST"){
                             'Location' : 'http://127.0.0.1:8000/email/'
                         });
                         res.end();
-                        console.log("return");
+                        send_percentage(total_data * message_increment);
                         message_job.cancel();
                     }
+
+                    var total_data = 100 / sendlist.length;
+                    send_percentage(total_data * message_increment);
+
 
             });
         }catch(e){

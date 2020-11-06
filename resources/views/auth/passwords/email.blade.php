@@ -32,11 +32,11 @@
 
                 <form class="form-container" method="POST" action="{{ route('password.email') }}">
                 @csrf
-                <h1>{{ __('Reset Password') }}</h1>
+                <h1>{{ __('Reset Sandi') }}</h1>
 
                 <!-- Email Address -->
                 <div class="form-group">
-                  <label for="email"class="tulisan-biasa" >{{ __('E-Mail Address') }}</label>
+                  <label for="email"class="tulisan-biasa" >{{ __('Alamat Email') }}</label>
                   <input id="email" type="email" class="inputan @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  required autocomplete="email" autofocus>
 
                   @error('email')

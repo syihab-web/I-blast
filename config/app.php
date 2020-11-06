@@ -176,8 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Unisharp\Laravelfilemanager\LaravelfilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        Maatwebsite\Excel\ExcelServiceProvider::class,
-        
+
     ],
 
     /*

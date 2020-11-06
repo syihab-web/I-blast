@@ -56,4 +56,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
         return false;
     }
+    public function artikel(){
+    	return $this->hasMany(Artikel::class);
+    }
 }

@@ -12,6 +12,7 @@
     <title>@yield('title')</title>
 
     <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('fontawesome/js/fontawesome.min.js') }}" defer></script>
     <script src="{{ asset('fontawesome/js/all.js') }}" defer></script>
@@ -21,7 +22,6 @@
     <script src="{{ asset('js/simple-modal.js') }}" defer></script>
     <script src="{{ asset('js/taginput.js') }}" defer></script>
     <script src="https://cdn.tiny.cloud/1/lq7e09nr1zvfkk9rgymrak6zoskkyv2dtna24qw94jhuxh22/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -63,6 +63,10 @@
           --bg-panel: #EBEBEB;
           --color-headings: #0077FF;
           --color-text: #333333;
+          --border: 1px solid grey;
+          --percent: black;
+          --pr-bg: rgb(164, 216, 164);
+
       }
 
       html[data-theme='dark'] {
@@ -70,6 +74,9 @@
           --bg-panel: #434343;
           --color-headings: #3694FF;
           --color-text: #B5B5B5;
+          --border: 1px solid #ddd;
+          --percent: white;
+          --pr-bg: rgb(44, 61, 44);
       }
 
       body {
@@ -84,8 +91,20 @@
           color: var(--color-text);
 
       }
+      .bga{
+          background-color: var(--bg);
+          color: var(--color-text);
+
+      }
       .up{
           color: var(--color-text);
+      }
+
+      .progress-bar{
+          border: var(--border);
+          border-radius: 5px;
+          color: var(--percent);
+          background: var(--pr-bg);
       }
 
       /* SWITCH TOGGLE */
@@ -167,6 +186,24 @@
           </style>
 </head>
 <body>
+       <!-- GetButton.io widget -->
+       <script type="text/javascript">
+        (function () {
+            var options = {
+                whatsapp: "6282120524105", // WhatsApp number
+                instagram: "ainanitajriyan_", // Instagram username
+                call_to_action: "Hubungi kami", // Call to action
+                button_color: "#28a745", // Color of button
+                position: "right", // Position may be 'right' or 'left'
+                order: "whatsapp,instagram", // Order of buttons
+            };
+            var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;
+            var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+            s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+            var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+        })();
+    </script>
+<!-- /GetButton.io widget -->
     <div id="app">
      <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
@@ -197,7 +234,7 @@
                             @endif
                         @else
                         <li class="nav-item">
-                            <a class="nav-link" href="/home"><i class="fas fa-home"></i> Home</a>
+                            <a class="nav-link" href="/home"><i class="fas fa-home"></i> Halaman Utama</a>
                         </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -225,40 +262,56 @@
 
                 <!-- Sidebar -->
             <div class="bg" id="sidebar-wrapper">
-                <div class="sidebar-heading"><a href="{{ route('profile.edit') }}" class="list-group-item list-group-item-action bg"><i class="fas fa-user-circle"></i>  Edit Profile</a>
+                <div class="sidebar-heading"><a href="{{ route('profile.edit') }}" class="list-group-item list-group-item-action bg"><i class="fas fa-user-circle"></i>  Edit Profil</a>
                 </div>
                 <br>
                 <div class="list-group list-group-flush">
                 @if(Auth::user() && Auth::user()->roles == '1')
                 <li class="list-group-item bg-transparent nav-item">
+                    <i class="fas fa-home ml-3"></i><a class="ml-2" href="/home"><button class="btn btn-transparent bg"> Halaman Utama</button></a>
+                </li>
+                <li class="list-group-item bg-transparent nav-item">
                     <i class="fas fa-tachometer-alt ml-3"></i><a class="ml-2" href="/email/dashboard"><button class="btn btn-transparent bg"> Dashboard</button></a>
                 </li>
+
                 <li class="list-group-item bg-transparent nav-item">
                     <i class="fas fa-pen-square ml-3"></i><a class="ml-2" href="/saran"><button class="btn btn-transparent bg"> Kritik dan saran</button></a>
                 </li>
                 <li class="list-group-item bg-transparent nav-item">
-                    <i class="fas fa-users ml-3"></i><a class="ml-2" href="/manageUsers"><button class="btn btn-transparent bg"> Manage Users</button></a>
+                    <i class="fas fa-users ml-3"></i><a class="ml-2" href="/manageUsers"><button class="btn btn-transparent bg"> Kelola Pengguna</button></a>
+                </li>
+                <li class="list-group-item bg-transparent nav-item">
+                    <i class="fas fa-paper-plane ml-3"></i><a class="ml-2" href="/pengumuman"><button class="btn btn-transparent bg"> Pengumuman</button></a>
+                </li>
+                @endif
+                @if(Auth::user() && Auth::user()->roles != '1')
+                <li class="list-group-item bg-transparent nav-item">
+                    <i class="fas fa-home ml-3"></i><a class="ml-2" href="/home"><button class="btn btn-transparent bg">Halaman Utama</button></a>
                 </li>
                 @endif
                 <li class="list-group-item bg-transparent nav-item">
-                    <i class="fas fa-address-book ml-3"></i><a class="ml-2" href="/daftaremail"><button class="btn btn-transparent bg"> Daftar Email</button></a>
+                    <i class="fas fa-envelope ml-3"></i><a class="ml-2" href="/email/create"><button class="btn btn-transparent bg">Kirim Email</button></a>
                 </li>
                 <li class="list-group-item bg-transparent nav-item">
-                    <i class="fas fa-envelope ml-3"></i><a class="ml-2" href="/email/create"><button class="btn btn-transparent bg"> Send Email</button></a>
+                    <i class="fas fa-history ml-3"></i><a class="ml-2" href="/email"><button class="btn btn-transparent bg">Riwayat Email </button></a>
                 </li>
                 <li class="list-group-item bg-transparent nav-item">
-                    <i class="fas fa-history ml-3"></i><a class="ml-2" href="/email"><button class="btn btn-transparent bg"> Email History</button></a>
+                    <i class="fas fa-image ml-3"></i><a class="ml-2" href="/email/seeTemplate"><button class="btn btn-transparent bg">Lihat Template</button></a>
                 </li>
                 <li class="list-group-item bg-transparent nav-item">
-                    <i class="fas fa-image ml-3"></i><a class="ml-2" href="/email/seeTemplate"><button class="btn btn-transparent bg"> See Template</button></a>
+                    <i class="fas fa-book ml-3"></i><a class="ml-2" href="/lihatArtikel"><button class="btn btn-transparent bg">Lihat Artikel</button></a>
                 </li>
+                <li class="list-group-item bg-transparent nav-item">
+                    <i class="fas fa-trash ml-3"></i><a class="ml-2" href="/lihatSampah"><button class="btn btn-transparent bg">Sampah</button></a>
+                </li>
+
                 <i class="list-group-item bg-transparent nav-item">
                     <div class="toggle-container">
                     <label class="switch">
                        <input type="checkbox" name="theme  ">
                        <span class="slider round"></span>
                    </label>
-                       <small><i class="fas fa-sun"></i>Day / <i class="fas fa-moon"></i>Night</small>
+                       <small><i class="fas fa-sun"></i>Siang / <i class="fas fa-moon"></i>Gelap</small>
                    </div>
                </i>
                 </div>
@@ -268,52 +321,50 @@
                 <div class="container">
                     <a class="navbar-item ml-2 btn btn-dark" id="menu-toggle"><i class="fas fa-bars"></i></a>
                     <form class="form-check-inline" method="GET" action="/search">
-                    <input class="form-control mr-sm-2 p-1 pl-2 search" name="search" id="search" size="25" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control mr-sm-2 p-1 pl-2 search" name="search" id="search" size="25" type="search" placeholder="Cari" aria-label="Search">
                     <button style="height: 100%;" type="submit" class="btn btn-dark"><i class="fas fa-search"></i></button>
                     </form>
                 </div>
                 </nav>
-                <main class="py-4 mb-2">
+                <main class="py-4">
                     <div class="container">
                         @yield('content')
                     </div>
                 </main>
-
             </div>
         </div>
-        <br><br>
-      	<footer class="footer-distributed">
+      	<footer class="footer-distributed mt-0">
 
-		<div class="footer-left">
+		<div class="footer-left pl-5">
 
         <span><img src="{{ asset('company/logo.png') }}" width="100"></span>
 
 		<p class="footer-links">
-		<a href="#">Home</a>
+		<a href="#">Halaman Utama</a>
 	·
-		<a href="https://inovindo.co.id/">About</a>
+		<a href="https://inovindo.co.id/">Tentang Kami</a>
 	·
-		<a href="#">Contact</a>
+		<a href="#">Kontak</a>
 		</p>
 
 		<p class="footer-company-name">I-Blast &copy; 2020</p>
 		</div>
 
-		<div class="footer-center">
+		<div class="footer-center pr-5">
 
 		<div class="mt-2">
-		<i class="fa fa-map-marker"></i>
-		<p><span>Buana Citra C-15</span>Kab.Bandung, Jawa Barat</p>
+		<i class="fa fa-map-marker" style="color: #eee"></i>
+		<p class="ml-2"> <span style="font-weight: bold; font-size: 18px"> Buana Citra C-15</span> Kab.Bandung, Jawa Barat</p>
 		</div>
 
 		<div class="mt-3">
-		<i class="fa fa-phone"></i>
-		<p>+62-881-0236-89072</p>
+		<i class="fa fa-phone" style="color: #eee"></i>
+		<p class="ml-2"> +62-881-0236-89072</p>
 		</div>
 
 		<div class="mt-3">
-		<i class="fa fa-envelope"></i>
-		<p><a href="mailto:syihabudin234@gmail.com">syihabudin234@gmail.com</a></p>
+		<i class="fa fa-envelope" style="color: #eee"></i>
+		<p class="ml-2"><a href="mailto:syihabudin234@gmail.com"> syihabudin234@gmail.com</a></p>
 		</div>
 
 		</div>
@@ -321,7 +372,7 @@
 		<div class="footer-right">
 
 		<p class="footer-company-about">
-		<span>About the company</span>
+		<span>Detail Perusahaan</span>
         INOVINDO Merupakan perusahaan Jasa Pembuatan Website Profesional, memiliki tenaga ahli muda yang berkompeten dan senantiasa mengutamakan pelayanan yang prima untuk klien / perusahaan mitra.mt-1</p>
 
 		<div class="footer-icons">

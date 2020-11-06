@@ -9,6 +9,9 @@ use App\Mail\EmailBlast;
 use App\Email;
 use App\User;
 use App\Saran;
+use App\Artikel;
+use App\DaftarEmail;
+use App\Pengumuman;
 use DB;
 use function GuzzleHttp\Promise\all;
 
@@ -34,9 +37,11 @@ class EmailController extends Controller
         $saran = Saran::count();
         $users = User::count();
         $count = Email::count();
+        $account = DaftarEmail::count();
+        $artikel = Artikel::count();
 
         if(Auth::user()->roles == '1'){
-            return view('email.dashboard', compact('count', 'users', 'saran'));
+            return view('email.dashboard', compact('count', 'users', 'saran', 'account', 'artikel'));
         }
         else{
             return redirect()->back();

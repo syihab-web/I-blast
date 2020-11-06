@@ -24,6 +24,8 @@ class GoogleController extends Controller
 
     public function findOrCreateUser($user, $provider)
     {
+        $role = 2;
+
         $authUser = User::where('google_id', $user->id)->first();
         if ($authUser) {
             return $authUser;
@@ -33,7 +35,8 @@ class GoogleController extends Controller
                 'name'     => $user->name,
                 'email'    => !empty($user->email)? $user->email : '' ,
                 'google_id' => $user->id,
-                'password' => md5($user->token)
+                'password' => md5($user->token),
+                'roles' => $role
             ]);
             return $data;
         }

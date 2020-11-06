@@ -29,7 +29,7 @@
 </style>
 
     <div class="container">
-       <h2>Email History</h2>
+       <h2>Riwayat Email</h2>
 
           <div class="table-responsive">
           <table class="table table-hover" id="table">
@@ -42,6 +42,11 @@
                     <i class="fas fa-sort-amount-up pointer" onclick="sortTable(0)"></i>
                 </th>
                 <th scope="col">
+                    Email Tujuan
+                    <i class="fas fa-sort-amount-down pointer" onclick="sortTable(0)"></i>
+                    <i class="fas fa-sort-amount-up pointer" onclick="sortTable(0)"></i>
+                </th>
+                <th scope="col">
                     Subjek
                     <i class="fas fa-sort-amount-down pointer" onclick="sortTable(1)"></i>
                     <i class="fas fa-sort-amount-up pointer" onclick="sortTable(1)"></i>
@@ -50,7 +55,7 @@
                     <i class="fas fa-sort-amount-down pointer" onclick="sortTable(2)"></i>
                     <i class="fas fa-sort-amount-up pointer" onclick="sortTable(2)"></i>
                 </th>
-                <th scope="col">Action</th>
+                <th scope="col">Aksi</th>
               </tr>
             </thead>
             <tbody class="bg">
@@ -59,6 +64,7 @@
               <tr>
               <th scope="row">{{ $value->perPage()*($value->currentPage()-1)+$count }}</th>
                 <td>{{ $values['from'] }}</td>
+                <td>{{ $values['to'] }}</td>
                 <td>{{ $values['subject'] }}</td>
                 <td>{{ $values['created_at'] }}</td>
                 <td>

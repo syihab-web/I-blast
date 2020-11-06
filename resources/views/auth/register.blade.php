@@ -24,12 +24,12 @@
             <div class="col-md-4 col-sm-4 col-xs-12"></div>
             <div class="col-md-4">
               <form method="POST" action="{{ route('register') }}" class="form-container">
-                <h1>{{ __('Register') }}</h1>
+                <h1>Registrasi</h1>
 
                 @csrf
                 <!-- Name -->
                 <div class="form-group">
-                  <label for="name" class="tulisan-biasa" >{{ __('Name') }}</label>
+                  <label for="name" class="tulisan-biasa" >Nama</label>
                   <input id="name"  type="text" class="inputan @error('name') is-invalid @enderror"  name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                   @error('name')
@@ -43,7 +43,7 @@
 
                 <!-- Email Address -->
                 <div class="form-group">
-                  <label for="email"class="tulisan-biasa" >{{ __('E-Mail Address') }}</label>
+                  <label for="email"class="tulisan-biasa" >Alamat Email</label>
                   <input id="email" type="email" class="inputan @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                   @error('email')
@@ -57,7 +57,7 @@
 
                 <!-- Password -->
                 <div class="form-group">
-                  <label for="password" class="tulisan-biasa">{{ __('Password') }}</label>
+                  <label for="password" class="tulisan-biasa">Sandi</label>
                   <input id="password" type="password" class="inputan show-password @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                   @error('password')
@@ -71,19 +71,19 @@
 
                 <!-- Confirm Password -->
                 <div class="form-group">
-                  <label for="password2" class="tulisan-biasa">{{ __('Konfirmasi Password') }}</label>
+                  <label for="password2" class="tulisan-biasa">Konfirmasi Sandi</label>
                   <input type="password" class="inputan show-password" name="password_confirmation" id="password2" required autocomplete="new-password">
                 </div>
 
                 <div class="custom-control custom-checkbox checkbox">
                   <input type="checkbox" class="custom-control-input form-checkbox" id="customCheck1">
-                  <label class="custom-control-label" for="customCheck1" style="color: #ACACAC;">Show Password</label>
+                  <label class="custom-control-label" for="customCheck1" style="color: #ACACAC;">Lihat Sandi</label>
                 </div>
                 <!-- Akhir Confirm Password -->
 
                 <div class="container  id="emailHelp2" >
                   <div class="row justify-content-center">
-                    <small  class="form-text text-muted">Atau</small>
+                    {{-- <small  class="form-text text-muted">Atau</small> --}}
                   </div>
 
                 <!-- Pilihan Media Sosial -->
@@ -92,12 +92,12 @@
 
                     <div class="col-lg-12 col-xs-12 col-md-12 text-center">
                       <div id="submit">
-                        <button type="submit" class="btn btn-outline-success container">{{ __('Register') }}</button>
+                        <button type="submit" class="btn btn-outline-success container">Registrasi</button>
                       </div>
                     </div>
 
                     <div class="sign-in">
-                      <small  class="form-text text-muted">Sudah Punya Akun? <a href="{{ url('/login') }}"  class="href">Sign-In</a></small>
+                      <small  class="form-text text-muted">Sudah Punya Akun? <a href="{{ url('/login') }}"  class="href">Masuk</a></small>
                     </div>
 
                   </div>

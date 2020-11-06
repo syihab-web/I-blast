@@ -58,23 +58,23 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
         </a>
     </div><br><br>
-    <center><h2>How to Use Template</h2></center>
+    <center><h2>Bagaimana Cara Menggunakan Template</h2></center>
     <center>
         <table>
             <tr>
-                <td>1. Copy source code template yang diinginkan pada halaman ini</td>
+                <td>1. Salin source code template yang diinginkan pada halaman ini</td>
             </tr>
             <tr>
-                <td>2. Lalu pergi ke halaman send email</td>
+                <td>2. Lalu pergi ke halaman kirim email</td>
             </tr>
             <tr>
-                <td>3. Click Menu Tools pada textarea</td>
+                <td>3. Klik Menu Tools pada textarea</td>
             </tr>
             <tr>
                 <td>4. lalu pilih menu source code</td>
             </tr>
             <tr>
-                <td>5. Paste source code yang telah di copy tadi</td>
+                <td>5. Tempel source code yang telah di salin tadi</td>
             </tr>
 
             <tr>
@@ -291,7 +291,7 @@
         </figure>
     </center>
 
-        <center><button onclick="copy()" class="btn btn-primary mt-2"><i class="fas fa-copy"></i> Copy</button></center>
+        <center><button onclick="copy()" class="btn btn-primary mt-2"><i class="fas fa-copy"></i> Salin</button></center>
 
     <hr>
 

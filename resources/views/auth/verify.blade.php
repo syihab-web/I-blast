@@ -29,23 +29,23 @@
             <div  class="mt-4">
                 <div id="card-content">
                     <div id="card-title">
-                        <h4 style="color: white">Verify Your Email Address</h4>
+                        <h4 style="color: white">Verifikasi alamat email Anda</h4>
                         <hr style="color: ">
                         @if (session('resent'))
                         <div class="alert alert-success" role="alert">
-                            {{ __('A fresh verification link has been sent to your email address.') }}
+                            {{ __('Link verifikasi yang baru sudah dikirim ke email anda!') }}
                         </div>
                         @endif
 
                         <h5 style="color: green">
-                            {{ __('Before proceeding, please check your email for a verification link.') }}
-                        {{ __('If you did not receive the email') }},
+                            {{ __('Sebelum melanjutkan, periksa email Anda untuk tautan verifikasi.') }}
+                        {{ __('Jika Anda tidak menerima email') }},
                         </h5>
                     </div>
                     <hr>
                     <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                         @csrf
-                        <center><button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.</center>
+                        <center><button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('klik di sini untuk meminta lagi') }}</button>.</center>
                     </form>
                 </div>
             </div>

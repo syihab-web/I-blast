@@ -43,7 +43,7 @@ class SaranController extends Controller
     public function store(Request $request)
     {
         $status = Saran::create($request->all());
-        return redirect('/home')->with('status', 'Saran berhasil dikirim');
+        return redirect('/')->with('status', 'Saran berhasil dikirim');
     }
 
     /**

@@ -38,7 +38,7 @@
 
         <nav class="navbar navbar-light bg">
             <form class="form-inline" method="GET" action="/searchUsers">
-              <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search User..." aria-label="Search">
+              <input class="form-control mr-sm-2" type="search" name="search" placeholder="Cari User..." aria-label="Search">
               <button class="btn btn-secondary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
             </form>
 
@@ -65,7 +65,7 @@
                     <i class="fas fa-sort-amount-down pointer" onclick="sortTable(2)"></i>
                     <i class="fas fa-sort-amount-up pointer" onclick="sortTable(2)"></i>
                 </th>
-                <th scope="col">Action</th>
+                <th scope="col">Aksi</th>
               </tr>
             </thead>
             <tbody class="bg">
