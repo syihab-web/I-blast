@@ -61,8 +61,8 @@
                 </div>
 
                 <div class="custom-control custom-checkbox checkbox">
-                  <input class="custom-control-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                  <label class="custom-control-label" for="remember" style="color: #ACACAC;">Ingat Saya</label>
+                  {{-- <input class="custom-control-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                  <label class="custom-control-label" for="remember" style="color: #ACACAC;">Ingat Saya</label> --}}
                 </div>
                 <!-- Akhir Password -->
 
@@ -90,20 +90,19 @@
 
 
 
-                    <div class="sign-in">
+                    <div class="sign-in text-center">
                       <small  class="form-text text-muted">Belum Punya Akun? <a href="{{ url('/register') }}" class="href">Registrasi</a>
                       </small>
                     </div>
 
-                    <div class="sign-in">
+                    {{-- <div class="sign-in">
 
                       @if (Route::has('password.request'))
                       <small>
-                      <a href="{{ route('password.request') }}" class="href">{{ __('Lupa Password?') }}</a>
                       </small>
                       @endif
 
-                    </div>
+                    </div> --}}
 
                   </div>
 

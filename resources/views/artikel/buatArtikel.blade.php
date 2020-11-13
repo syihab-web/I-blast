@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Buat Artikel')
+
 @section('content')
 
 
@@ -7,7 +9,7 @@
     <h3>Buat Artikel</h3>
 
     <hr><br>
-        <form action="/proses_buatArtikel" method="POST" enctype="multipart/form-data" class="mt-4 bga">
+        <form action="{{ url('/proses_buatArtikel') }}" method="POST" enctype="multipart/form-data" class="mt-4 bga">
             @csrf
             <div class="form-group">
                 <label for="title"><b>Title</b></label>

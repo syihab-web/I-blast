@@ -8,6 +8,8 @@
         <title>Artikel</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -17,6 +19,10 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{ asset('css/welcome.css') }}" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="{{ asset('js/app.js') }}" defer></script>
+
         <style>
             body{
                 background-color: #ddd;
@@ -24,6 +30,25 @@
         </style>
     </head>
     <body id="page-top">
+
+        <!-- GetButton.io widget -->
+    <script type="text/javascript">
+        (function () {
+            var options = {
+                whatsapp: "6282120524105", // WhatsApp number
+                instagram: "ainanitajriyan_", // Instagram username
+                call_to_action: "Hubungi kami", // Call to action
+                button_color: "#28a745", // Color of button
+                position: "right", // Position may be 'right' or 'left'
+                order: "whatsapp,instagram", // Order of buttons
+            };
+            var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;
+            var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+            s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+            var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+        })();
+    </script>
+<!-- /GetButton.io widget -->
 
         @if(session('success'))
         <script>
@@ -57,25 +82,6 @@
         @endif
 
 
-        <!-- GetButton.io widget -->
-    <script type="text/javascript">
-        (function () {
-            var options = {
-                whatsapp: "6282120524105", // WhatsApp number
-                instagram: "ainanitajriyan_", // Instagram username
-                call_to_action: "Hubungi kami", // Call to action
-                button_color: "#28a745", // Color of button
-                position: "right", // Position may be 'right' or 'left'
-                order: "whatsapp,instagram", // Order of buttons
-            };
-            var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;
-            var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
-            s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
-            var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
-        })();
-    </script>
-<!-- /GetButton.io widget -->
-
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav" style="background: #000">
             <div class="container">
@@ -90,7 +96,7 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/#about">Tentang</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/#saran">Saran</a></li>
 
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/home"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/home"><i class="fas fa-sign-in-alt"></i> Masuk</a></li>
                     </ul>
                 </div>
             </div>
@@ -108,7 +114,7 @@
             <div class="row  row-cols-md-3 bga">
                 @foreach ($artikel as $artikels)
                     <div class="col-12 col-md-4 mb-4 " >
-                        <div class="card shadow" >
+                        <div class="card shadow h-100" >
                         @if (empty($artikels->foto))
                         <div class="card-body container">
                             <div class="text-center row justify-content-center ">
@@ -131,7 +137,7 @@
                                 <h4>{{ $artikels->judul}}</h4>
                             </div>
                             <div class="" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-height:50px;">
-                                <p class="card-text" style="font-size: 10px">{!! $artikels->konten !!}</p>
+                                <p class="card-text" style="font-size: 10px">{!! Str::substr(strip_tags($artikels->konten), 0, 70)   !!}...</p>
                             </div>
                             <a href="/detailArtikel/{{ $artikels->slug }}">Baca Selengkapnya...</a>
                             <p class="card-text"><small class="text-muted">Dibuat oleh {{ $artikels->user['name'] }}</small></p>
@@ -175,7 +181,7 @@
 
         <!-- Footer-->
         <footer class="bg-light py-5">
-            <div class="container"><div class="small text-center text-muted">Copyright © 2020 I-Blast</div></div>
+            <div class="container"><div class="small text-center text-muted">Copyright © {{ \Carbon\Carbon::now()->year }} I-Blast</div></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

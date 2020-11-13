@@ -49,7 +49,7 @@
         </div>
       </div>
 
-       <!-- Earnings (Monthly) Card Example -->
+       {{-- <!-- Earnings (Monthly) Card Example -->
        <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-success shadow h-100 py-2 bg">
           <div class="card-body">
@@ -64,7 +64,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> --}}
 
       <!-- Pending Requests Card Example -->
       <div class="col-xl-3 col-md-6 mb-4">
@@ -87,7 +87,7 @@
 
     <div class="row">
 
-      <!-- Area Chart -->
+      {{-- <!-- Area Chart -->
       <div class="col-xl-8 col-lg-7">
         <div class="card shadow mb-4 bg">
           <!-- Card Header - Dropdown -->
@@ -171,7 +171,7 @@
       </div>
     </div>
 
-  </div>
+  </div> --}}
   <!-- /.container-fluid -->
 
 @endsection

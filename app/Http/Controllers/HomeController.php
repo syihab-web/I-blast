@@ -37,7 +37,7 @@ class HomeController extends Controller
         $count = Email::where('user', 'like', Auth::user()->id)->count();
         $account = DaftarEmail::count();
         $artikel = Artikel::count();
-        $pengumuman = Pengumuman::all();
+        $pengumuman = Pengumuman::orderBy('updated_at','desc')->paginate(3);
 
         if(Auth::user()->roles != '1'){
             return view('home', compact('count', 'users', 'saran', 'account', 'artikel', 'pengumuman'));

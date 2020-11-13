@@ -5,10 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Artikel</title>
+        <title>Detail Artikel</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
@@ -89,7 +91,7 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/#about">Tentang</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/#saran">Saran</a></li>
 
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/home"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ url('/home') }}"><i class="fas fa-sign-in-alt"></i> Masuk</a></li>
                     </ul>
                 </div>
             </div>
@@ -138,7 +140,7 @@
 
         <!-- Footer-->
         <footer class="bg-light py-5">
-            <div class="container"><div class="small text-center text-muted">Copyright © 2020 I-Blast</div></div>
+            <div class="container"><div class="small text-center text-muted">Copyright © {{ \Carbon\Carbon::now()->year }} I-Blast</div></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

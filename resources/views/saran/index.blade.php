@@ -15,7 +15,7 @@
 @endif
     <div class="container">
 
-        <h3>Manage Advices</h3>
+        <h3>Kelola Saran dari User</h3>
 
         <hr><br>
 

@@ -190,8 +190,8 @@
        <script type="text/javascript">
         (function () {
             var options = {
-                whatsapp: "6282120524105", // WhatsApp number
-                instagram: "ainanitajriyan_", // Instagram username
+                whatsapp: "628562251196", // WhatsApp number
+                instagram: "inovindo", // Instagram username
                 call_to_action: "Hubungi kami", // Call to action
                 button_color: "#28a745", // Color of button
                 position: "right", // Position may be 'right' or 'left'
@@ -283,6 +283,10 @@
                 <li class="list-group-item bg-transparent nav-item">
                     <i class="fas fa-paper-plane ml-3"></i><a class="ml-2" href="/pengumuman"><button class="btn btn-transparent bg"> Pengumuman</button></a>
                 </li>
+                <li class="list-group-item bg-transparent nav-item">
+                    <i class="fas fa-laptop ml-3"></i><a class="ml-2" href="/template"><button class="btn btn-transparent bg"> Kelola Template</button></a>
+                </li>
+
                 @endif
                 @if(Auth::user() && Auth::user()->roles != '1')
                 <li class="list-group-item bg-transparent nav-item">
@@ -311,7 +315,7 @@
                        <input type="checkbox" name="theme  ">
                        <span class="slider round"></span>
                    </label>
-                       <small><i class="fas fa-sun"></i>Siang / <i class="fas fa-moon"></i>Gelap</small>
+                       <small><i class="fas fa-sun"></i>Siang / <i class="fas fa-moon"></i>Malam</small>
                    </div>
                </i>
                 </div>
@@ -347,24 +351,24 @@
 		<a href="#">Kontak</a>
 		</p>
 
-		<p class="footer-company-name">I-Blast &copy; 2020</p>
+		<p class="footer-company-name">I-Blast &copy; {{ \Carbon\Carbon::now()->year }}</p>
 		</div>
 
 		<div class="footer-center pr-5">
 
 		<div class="mt-2">
 		<i class="fa fa-map-marker" style="color: #eee"></i>
-		<p class="ml-2"> <span style="font-weight: bold; font-size: 18px"> Buana Citra C-15</span> Kab.Bandung, Jawa Barat</p>
+		<p class="ml-2"> <span style="font-weight: bold; font-size: 18px"> Buana Citra C-15</span> Kab. Bandung, Jawa Barat</p>
 		</div>
 
 		<div class="mt-3">
 		<i class="fa fa-phone" style="color: #eee"></i>
-		<p class="ml-2"> +62-881-0236-89072</p>
+		<p class="ml-2"> 0856 2251 196</p>
 		</div>
 
 		<div class="mt-3">
 		<i class="fa fa-envelope" style="color: #eee"></i>
-		<p class="ml-2"><a href="mailto:syihabudin234@gmail.com"> syihabudin234@gmail.com</a></p>
+		<p class="ml-2"><a href="mailto:inovindocorp@gmail.com"> inovindocorp@gmail.com</a></p>
 		</div>
 
 		</div>
@@ -373,13 +377,13 @@
 
 		<p class="footer-company-about">
 		<span>Detail Perusahaan</span>
-        INOVINDO Merupakan perusahaan Jasa Pembuatan Website Profesional, memiliki tenaga ahli muda yang berkompeten dan senantiasa mengutamakan pelayanan yang prima untuk klien / perusahaan mitra.mt-1</p>
+        INOVINDO Merupakan perusahaan Jasa Pembuatan Website Profesional, memiliki tenaga ahli muda yang berkompeten dan senantiasa mengutamakan pelayanan yang prima untuk klien / perusahaan mitra.</p>
 
 		<div class="footer-icons">
 
-		<a href="#"><i class="fab fa-facebook"></i></a>
-		<a href="#"><i class="fab fa-twitter"></i></a>
-		<a href="#"><i class="fab fa-instagram"></i></a>
+		<a href="https://facebook.com/inovindo"><i class="fab fa-facebook"></i></a>
+		<a href="https://twitter.com/inovindo"><i class="fab fa-twitter"></i></a>
+		<a href="https://instagram.com/inovindo"><i class="fab fa-instagram"></i></a>
 		<a href="https://inovindo.co.id/"><i class="fas fa-globe"></i></a>
 
 		</div>

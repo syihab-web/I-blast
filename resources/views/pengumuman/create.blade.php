@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Send Email')
+@section('title', 'Buat Pengumuman')
 
 @section('content')
 
@@ -41,7 +41,7 @@
         });
 </script>
 @endif
-<h2>Send Email</h2>
+<h2>Buat Pengumuman</h2>
 <hr>
             <form action="/pengumuman/store" method="POST">
                @csrf

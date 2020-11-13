@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Sampah')
+
 @section('content')
 @if(session('pulih'))
     <script>
@@ -15,10 +17,13 @@
     </div>
     @endif
 
-    @if(session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
+    @if(session('hapusperman'))
+    <script>
+        swal({
+            icon: 'info',
+            title: 'Data berhasil dihapus permanen!',
+        });
+    </script>
     @endif
 
 <div class="card bg" >
@@ -41,7 +46,7 @@
                 <form action="/hapusSampah/{{ $a->id }}" method="post">
                 @csrf
                 @method('delete')
-                <a href="/pulihkanSampah/{{ $a->id }}" class="btn btn-success btn-sm">Restore</a>
+                <a href="/pulihkanSampah/{{ $a->id }}" class="btn btn-success btn-sm">Pulihkan</a>
                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">Hapus</button>
                 </form>
               </td>

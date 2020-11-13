@@ -17,9 +17,9 @@ Route::get('/', function () {
 
 });
 
-Route::get('/email/seeTemplate', function () {
-    return view('seeTemplate');
-});
+Route::get('/email/seeTemplate', 'TemplateController@seeTemplate');
+Route::resource('/template', 'TemplateController');
+Route::post('/template/store', 'TemplateController@store');
 
 // Route Artikel
 Route::get('/lihatArtikel', 'ArtikelController@index');

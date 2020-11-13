@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'History')
+@section('title', 'Data Pengumuman')
 
 @section('content')
 
@@ -29,7 +29,7 @@
 </style>
 
     <div class="container">
-       <h2>Announcement</h2>
+       <h2>Kelola Pengumuman</h2>
 
           <div class="table-responsive">
 
@@ -48,13 +48,13 @@
                     <center> isi
                     <i class="fas fa-sort-amount-down pointer" onclick="sortTable(0)"></i>
                     <i class="fas fa-sort-amount-up pointer" onclick="sortTable(0)"></i>
-                </center>s
+                </center>
                 </th>
                 <th scope="col">Tanggal
                     <i class="fas fa-sort-amount-down pointer" onclick="sortTable(2)"></i>
                     <i class="fas fa-sort-amount-up pointer" onclick="sortTable(2)"></i>
                 </th>
-                <th scope="col">Action</th>
+                <th scope="col">Aksi</th>
               </tr>
             </thead>
             <tbody class="bg">
@@ -67,11 +67,10 @@
                 <td>{{ $values['created_at'] }}</td>
                 <td>
                     <div class="btn-group" role="group">
-                        <a href="/pengumuman/{{ $values->id }}" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="left" data-content="Show Detail Email History?" class="btn btn-primary mr-1"><i class="fas fa-eye"></i></a>
-                        <form action="/pengumuman/{{ $values->id }}" method="POST">
+                       <form action="/pengumuman/{{ $values->id }}" method="POST">
                             @method('delete')
                             @csrf
-                            <button type="submit" class="btn btn-danger" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="left" data-content="Delete Email History?" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')" onclick="showAlert()"><i class="fas fa-trash-alt"></i></button>
+                            <button type="submit" class="btn btn-danger" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="left" data-content="Hapus Pengumuman?" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')" onclick="showAlert()"><i class="fas fa-trash-alt"></i></button>
                         </form>
                     </div>
                 </td>

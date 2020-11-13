@@ -26,6 +26,6 @@ class PasswordController extends Controller
             'password' => Hash::make($request->get('password'))
         ]);
 
-        return redirect()->route('user.password.edit');
+        return redirect('password')->with('success', 'sasas');
     }
 }

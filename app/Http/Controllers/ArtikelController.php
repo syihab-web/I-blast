@@ -70,7 +70,7 @@ class ArtikelController extends Controller
         // $foto->move('public/uploads/',$newFoto);
 
         if ($artikel  ->save()) {
-            return redirect('/lihatArtikel')->with(['success' => ' Data Berhasil ditambahkan']);
+            return redirect('/lihatArtikel')->with('success', 'Data Berhasil ditambahkan');
         }else{
             return redirect('/lihatArtikel')->with(['erorr' => ' Data Gagal ditambahkan']);
         }
@@ -129,7 +129,7 @@ class ArtikelController extends Controller
 
 
         if ($artikel) {
-            return redirect('/lihatArtikel'.$request->id_user)->with(['edit' => ' Data Berhasil diedit']);
+            return redirect('/lihatArtikel'.$request->id_user)->with('edit', 'Data berhasil diubah');
         }else{
             return redirect('editArtikel/'.$request->id_user)->with(['erorr' => ' Data Gagal diedit']);
         }
@@ -166,6 +166,6 @@ class ArtikelController extends Controller
         $artikel    = Artikel::withTrashed()->where('id', $id)->first();
         $artikel->forceDelete();
 
-        return redirect()->back()->with(['hapusperman' => ' Data Berhasil dihapus PERMANEN']);
+        return redirect()->back()->with('hapusperman', 'Data berhasil dihapus permanen');
     }
 }

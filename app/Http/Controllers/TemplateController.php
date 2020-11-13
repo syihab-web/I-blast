@@ -2,209 +2,155 @@
 
 namespace App\Http\Controllers;
 
+use App\Template;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class TemplateController extends Controller
 {
-   public function getTemplate1(){
-        return response('
-        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-        <html xmlns="http://www.w3.org/1999/xhtml">
 
-        <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title></title>
-        <style type="text/css">
-        body {margin: 0; padding: 0; min-width: 100%!important;}
-        img {height: auto;}
-        .content {width: 100%;}
-        .header {padding: 40px 30px 20px 30px;}
-        .innerpadding {padding: 30px 30px 30px 30px;}
-        .borderbottom {border-bottom: 1px solid #f2eeed;}
-        .subhead {font-size: 15px; color: #ffffff; font-family: sans-serif; letter-spacing: 10px;}
-        .h1, .h2, .bodycopy {color: #153643; font-family: sans-serif;}
-        .h1 {font-size: 33px; line-height: 38px; font-weight: bold;}
-        .h2 {padding: 0 0 15px 0; font-size: 24px; line-height: 28px; font-weight: bold;}
-        .bodycopy {font-size: 16px; line-height: 22px;}
-        .button {text-align: center; font-size: 18px; font-family: sans-serif; font-weight: bold; padding: 0 30px 0 30px;}
-        .button a {color: #ffffff; text-decoration: none;}
-        .footer {padding: 20px 30px 15px 30px;}
-        .footercopy {font-family: sans-serif; font-size: 14px; color: #ffffff;}
-        .footercopy a {color: #ffffff; text-decoration: underline;}
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+    }
 
-        @media only screen and (max-width: 550px), screen and (max-device-width: 550px) {
-        body[yahoo] .hide {display: none!important;}
-        body[yahoo] .buttonwrapper {background-color: transparent!important;}
-        body[yahoo] .button {padding: 0px!important;}
-        body[yahoo] .button a {background-color: #e05443; padding: 15px 15px 13px!important;}
-        body[yahoo] .unsubscribe {display: block; margin-top: 20px; padding: 10px 50px; background: #2f3942; border-radius: 5px; text-decoration: none!important; font-weight: bold;}
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $template = Template::paginate(10);
+        if(Auth::user()->roles == '1'){
+            return view('crud_template.index', compact('template'));
+        }
+        else{
+            return redirect()->back();
+        }
+    }
+
+    public function seeTemplate(){
+        $template = Template::paginate(1);
+        return view('seeTemplate', compact('template'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        if(Auth::user()->roles == '1'){
+            return view('crud_template.create');
+        }
+        else{
+            return redirect()->back();
+        }
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $messages = [
+            'required' => ':attribute wajib diisi!',
+            'min' => ':attribute harus diisi minimal :min karakter',
+            'image.max' => ' maksimal ukuran :attribute adalah 10 MB',
+            'mimes'=> 'Tipe file :attribute hanya boleh jpeg, png, dan jpg',
+            'image'=> 'Tipe file :attribute hanya boleh jpeg, png, dan jpg',
+
+        ];
+
+        $this->validate($request,[
+              'title'   => 'required',
+              'image'    => 'required|file|max:10240|image|mimes:jpeg,png,jpg',
+              'code'  => 'required'
+        ],$messages);
+
+
+        $image    = $request->image;
+        $newImage= time().$image->getClientOriginalName();
+
+        $template = Template::create([
+            'title'   => $request->title,
+            'image'    => 'templates/'.$newImage,
+            'code'  => $request->code
+        ]);
+
+        $image = $request->file('image');
+        $tujuan_upload = 'templates';
+        $image->move($tujuan_upload,$newImage);
+        // $foto->move('public/uploads/',$newFoto);
+
+        if ($template->save()) {
+            return redirect('/template')->with('success', 'Data Berhasil ditambahkan');
+        }else{
+            return redirect('/template/create')->with(['erorr' => ' Data Gagal ditambahkan']);
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Template  $template
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Template $template)
+    {
+        if(Auth::user()->roles == '1'){
+            return view('crud_template.show', compact('template'));
+        }
+        else{
+            return redirect()->back();
         }
 
-        /*@media only screen and (min-device-width: 601px) {
-            .content {width: 600px !important;}
-            .col425 {width: 425px!important;}
-            .col380 {width: 380px!important;}
-            }*/
+    }
 
-        </style>
-        </head>
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Template  $template
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Template $template)
+    {
+        //
+    }
 
-        <body yahoo bgcolor="#f6f8f1">
-        <table width="100%" bgcolor="#f6f8f1" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-        <td>
-            <!--[if (gte mso 9)|(IE)]>
-            <table width="600" align="center" cellpadding="0" cellspacing="0" border="0">
-                <tr>
-                <td>
-            <![endif]-->
-            <table bgcolor="#ffffff" class="content" align="center" cellpadding="0" cellspacing="0" border="0">
-            <tr>
-                <td bgcolor="#c7d8a7" class="header">
-                <table width="70" align="left" border="0" cellpadding="0" cellspacing="0">
-                    <tr>
-                    <td height="70" style="padding: 0 20px 20px 0;">
-                        <img class="fix" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/icon.gif" width="70" height="70" border="0" alt="" />
-                    </td>
-                    </tr>
-                </table>
-                <!--[if (gte mso 9)|(IE)]>
-                    <table width="425" align="left" cellpadding="0" cellspacing="0" border="0">
-                    <tr>
-                        <td>
-                <![endif]-->
-                <table class="col425" align="left" border="0" cellpadding="0" cellspacing="0" style="width: 100%; max-width: 425px;">
-                    <tr>
-                    <td height="70">
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                        <tr>
-                            <td class="subhead" style="padding: 0 0 0 3px;">
-                            FROM
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="h1" style="padding: 5px 0 0 0;">
-                                From...
-                            </td>
-                        </tr>
-                        </table>
-                    </td>
-                    </tr>
-                </table>
-                <!--[if (gte mso 9)|(IE)]>
-                        </td>
-                    </tr>
-                </table>
-                <![endif]-->
-                </td>
-            </tr>
-            <tr>
-                <td class="innerpadding borderbottom">
-                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                    <td class="h2">
-                       Subject...
-                    </td>
-                    </tr>
-                    <tr>
-                    <td class="bodycopy">
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Template  $template
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Template $template)
+    {
+        //
+    }
 
-                    </td>
-                    </tr>
-                </table>
-                </td>
-            </tr>
-            <tr>
-                <td class="innerpadding borderbottom">
-                <table width="115" align="left" border="0" cellpadding="0" cellspacing="0">
-                    <tr>
-                    <td height="115" style="padding: 0 20px 20px 0;">
-                        <img class="fix" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/article1.png" width="115" height="115" border="0" alt="" />
-                    </td>
-                    <td height="115" style="padding: 0 20px 20px 0;">
-                        <h1>Hello Customers</h1>
-                    </td>
-                    </tr>
-                </table>
-                <!--[if (gte mso 9)|(IE)]>
-                    <table width="380" align="left" cellpadding="0" cellspacing="0" border="0">
-                    <tr>
-                        <td>
-                <![endif]-->
-                <table class="col380" align="left" border="0" cellpadding="0" cellspacing="0" style="width: 100%; max-width: 380px;">
-                    <tr>
-                    <td>
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                        <tr>
-                            <td style="padding: 20px 0 0 0;">
-                            <table class="buttonwrapper" bgcolor="#e05443" border="0" cellspacing="0" cellpadding="0">
-                                <tr>
-                                </tr>
-                            </table>
-                            </td>
-                        </tr>
-                        </table>
-                    </td>
-                    </tr>
-                </table>
-                <!--[if (gte mso 9)|(IE)]>
-                        </td>
-                    </tr>
-                </table>
-                <![endif]-->
-                </td>
-            </tr>
-            <tr>
-                <td class="innerpadding borderbottom">
-                </td>
-            </tr>
-            <tr>
-                <td class="innerpadding bodycopy">
-                    Isi Pesan...
-                </td>
-            </tr>
-            <tr>
-                <td class="footer" bgcolor="#44525f">
-                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                    <td align="center" class="footercopy">
-                        &reg; Someone, somewhere 20XX<br/>
-                        <a href="#" class="unsubscribe"><font color="#ffffff">Unsubscribe</font></a>
-                        <span class="hide">from this newsletter instantly</span>
-                    </td>
-                    </tr>
-                    <tr>
-                    <td align="center" style="padding: 20px 0 0 0;">
-                        <table border="0" cellspacing="0" cellpadding="0">
-                        <tr>
-                            <td width="37" style="text-align: center; padding: 0 10px 0 10px;">
-                            <a href="http://www.facebook.com/">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/facebook.png" width="37" height="37" alt="Facebook" border="0" />
-                            </a>
-                            </td>
-                            <td width="37" style="text-align: center; padding: 0 10px 0 10px;">
-                            <a href="http://www.twitter.com/">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/twitter.png" width="37" height="37" alt="Twitter" border="0" />
-                            </a>
-                            </td>
-                        </tr>
-                        </table>
-                    </td>
-                    </tr>
-                </table>
-                </td>
-            </tr>
-            </table>
-            <!--[if (gte mso 9)|(IE)]>
-                </td>
-                </tr>
-            </table>
-            <![endif]-->
-            </td>
-        </tr>
-        </table>
-        </body>
-        </html>
-        ');
-   }
+     /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        Template::destroy($id);
+        return redirect('/template')->with('delete', "Data berhasil dihapus!");
+    }
 }

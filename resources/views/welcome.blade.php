@@ -8,21 +8,25 @@
         <title>Welcome page</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
         <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
         <!-- Third party plugin CSS-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{ asset('css/welcome.css') }}" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <style>
         .promo-title{
-            color: aliceblue;
-        }
-        p{
             color: aliceblue;
         }
     </style>
@@ -46,7 +50,14 @@
         })();
     </script>
 <!-- /GetButton.io widget -->
-
+@if(session('status'))
+<script>
+    swal({
+        icon: 'info',
+        title: 'Kritik dan Saran Berhasil dikirim!',
+    });
+</script>
+@endif
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container">
@@ -61,7 +72,7 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Tentang</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#saran">Saran</a></li>
 
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/home"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/home"><i class="fas fa-sign-in-alt"></i> Masuk</a></li>
                     </ul>
                 </div>
             </div>
@@ -76,7 +87,7 @@
 
                     <div class="col-md-6 ">
                         <p class="text-white-75 font-weight-light mb-5">I-Blast Merupakan Website yang menyediakan fitur fitur yang dapat mempermudah pengiriman email marketing.</p>
-                        <a class="btn btn-success btn-xl" href="/home"> Mulai Sekarang</a>
+                        <a class="btn btn-success btn-xl" href="{{ url('/home') }}"> Mulai Sekarang</a>
                     </div>
                 </div>
             </div>
@@ -100,7 +111,7 @@
         </div>
         <div class="col-lg-6">
           <h3 class="text-white">Tidak Perlu <span> Bingung </span> dengan Email Marketing </h3>
-          <p class="text-black">Anda hanya perlu fokus pada bisnis anda dan lakukan Email Blast dengan efisien </p>
+          <p class="text-light">Anda hanya perlu fokus pada bisnis anda dan lakukan Email Blast dengan efisien </p>
           <a href="/email/create" class="btn btn-primary tombol">Kirim email Sekarang</a>
         </div>
       </div>
@@ -108,7 +119,7 @@
       <div class="row main-content mt-5">
         <div class="col-lg-6">
           <h3 class="text-white">Raih sukses anda bersama kami</h3>
-          <p class="text-black">Sekeras apapun berusaha, bila <b style="color: black;"> alat </b> yang anda gunakan salah.. Maka semuanya itu sia-sia </p>
+          <p class="text-light">Sekeras apapun berusaha, bila <b style="color: black;"> alat </b> yang anda gunakan salah.. Maka semuanya itu sia-sia </p>
           <a href="/email/create" class="btn btn-primary tombol mb-4">Kirim Email sekarang</a>
         </div>
         <div class="col-lg-6">
@@ -169,7 +180,7 @@
 
     <div class="col-md-6 text-center">
         <p class="promo-title mr-5">Menghemat berjam-jam</p>
-    <p>Buat pengiriman email Anda dengan cepat. Tidak diperlukan desainer grafis atau pembuat kode HTML.</p>
+    <p class="text-light">Buat pengiriman email Anda dengan cepat. Tidak diperlukan desainer grafis atau pembuat kode HTML.</p>
 </div>
 </div>
 </div>
@@ -180,7 +191,7 @@
     </div>
     <div class="col-md-6">
         <p class="promo-title mr-5">Cantik dan responsif</p>
-    <p>Email Anda akan terlihat bagus di semua jenis perangkat dan klien email yang berbeda.</p>
+    <p class="text-light">Email Anda akan terlihat bagus di semua jenis perangkat dan klien email yang berbeda.</p>
 </div>
 </div>
 </div>
@@ -192,7 +203,7 @@
 
     <div class="col-md-6">
          <p class="promo-title mr-5">I-Blast</p>
-    <p>Cara terbaik untuk mengirimkan email Anda dengan cepat kepada puluhan atau mungkin ratusan orang yang membutuhkan informasi dari Anda.</p>
+    <p class="text-light">Cara terbaik untuk mengirimkan email Anda dengan cepat kepada puluhan atau mungkin ratusan orang yang membutuhkan informasi dari Anda.</p>
 </div>
  </div>
 </div>
@@ -203,10 +214,21 @@
     </div>
     <div class="col-md-6">
         <p class="promo-title mr-5">Template</p>
-    <p>Anda hanya perlu memasukan info kedalam email Anda dan memilih template yang Anda inginkan untuk tampilan email yang akan Anda kirim kepada banyak orang.</p>
+    <p class="text-light">Anda hanya perlu memasukan info kedalam email Anda dan memilih template yang Anda inginkan untuk tampilan email yang akan Anda kirim kepada banyak orang.</p>
 </div>
 </div>
 </div>
+</section>
+<section class="page-section" id="video">
+    <div class="container">
+
+        <h2 class="text-center">Demo Website</h2>
+        <hr class="divider dark my-4">
+
+        <video controls width="100%">
+            <source src="" type="video/mp4" />
+        </video>
+    </div>
 </section>
 <section class="page-section" id="artikel">
     <div class="container">
@@ -215,7 +237,7 @@
     <div class="row  row-cols-md-3 bga">
         @foreach ($artikel as $artikels)
             <div class="col-12 col-md-4 mb-4 " >
-                <div class="card shadow" >
+                <div class="card shadow h-100">
                 @if (empty($artikels->foto))
                 <div class="card-body container">
                     <div class="text-center row justify-content-center ">
@@ -227,8 +249,8 @@
                 @else
                 <div class="card-body container">
                     <div class="text-center row justify-content-center ">
-                        <div class="col-10 col-md-12 thumb" >
-                            <img src="{{ asset($artikels->foto) }}" class="img-fluid" >
+                        <div class="col-10 col-md-12 thumb">
+                            <img src="{{ asset($artikels->foto) }}" class="img-fluid">
                         </div>
                     </div>
                 </div>
@@ -237,8 +259,8 @@
                     <div class="link" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
                         <h4>{{ $artikels->judul}}</h4>
                     </div>
-                    <div class="" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-height:50px;">
-                        <p class="card-text" style="font-size: 10px">{!! $artikels->konten !!}</p>
+                    <div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-height:50px;">
+                        <p class="card-text" style="font-size: 10px; color: black">{!! Str::substr(strip_tags($artikels->konten), 0, 70)   !!}...</p>
                     </div>
                     <a href="/detailArtikel/{{ $artikels->slug }}">Baca Selengkapnya...</a>
                     <p class="card-text"><small class="text-muted">Dibuat oleh {{ $artikels->user['name'] }}</small></p>
@@ -339,9 +361,9 @@
 
                         <ul class="list-group">
                           <li class="list-group-item"><h1>Kantor Kita</h1></li>
-                          <li class="list-group-item">Jl.Kliningan 06 Buah Batu</li>
-                          <li class="list-group-item">Di Lengkong</li>
-                          <li class="list-group-item">081320005968</li>
+                          <li class="list-group-item">Jalan Batusari No. C15</li>
+                          <li class="list-group-item">Komplek Buana Citra Ciwastra, Buahbatu, Bandung</li>
+                          <li class="list-group-item">0856 2251 196</li>
                         </ul>
 
                       </div>
@@ -376,7 +398,7 @@
 
         <!-- Footer-->
         <footer class="bg-light py-5">
-            <div class="container"><div class="small text-center text-muted">Copyright © 2020 I-Blast</div></div>
+            <div class="container"><div class="small text-center text-muted">Copyright © {{ \Carbon\Carbon::now()->year }} I-Blast</div></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
