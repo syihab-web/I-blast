@@ -72,7 +72,7 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Tentang</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#saran">Saran</a></li>
 
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/home"><i class="fas fa-sign-in-alt"></i> Masuk</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ url('/home') }}"><i class="fas fa-sign-in-alt"></i> Masuk</a></li>
                     </ul>
                 </div>
             </div>
@@ -225,9 +225,8 @@
         <h2 class="text-center">Demo Website</h2>
         <hr class="divider dark my-4">
 
-        <video controls width="100%">
-            <source src="" type="video/mp4" />
-        </video>
+       <center> <iframe width="1100" height="591" src="https://www.youtube.com/embed/Oc70HJrcnAM" frameborder="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </center>
+
     </div>
 </section>
 <section class="page-section" id="artikel">
@@ -271,7 +270,7 @@
             </div>
         @endforeach
     </div>
-    <center><a href="/lihatArtikel" class="btn btn-success"><i class="fas fa-arrow-alt-circle-right"></i> Lihat Selengkapnya</a></center>
+    <center><a href="{{ url('/lihatArtikel') }}" class="btn btn-success"><i class="fas fa-arrow-alt-circle-right"></i> Lihat Selengkapnya</a></center>
 </div>
 </section>
 <br>

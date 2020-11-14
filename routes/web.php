@@ -17,19 +17,19 @@ Route::get('/', function () {
 
 });
 
-Route::get('/email/seeTemplate', 'TemplateController@seeTemplate');
+Route::get('/email/seeTemplate', 'TemplateController@seeTemplate')->name('seeTemplate');
 Route::resource('/template', 'TemplateController');
 Route::post('/template/store', 'TemplateController@store');
 
 // Route Artikel
-Route::get('/lihatArtikel', 'ArtikelController@index');
-Route::get('/buatArtikel', 'ArtikelController@buat');
+Route::get('/lihatArtikel', 'ArtikelController@index')->name('artikel.lihatArtikel');
+Route::get('/buatArtikel', 'ArtikelController@buat')->name('artikel.buatArtikel');
 Route::post('/proses_buatArtikel', 'ArtikelController@proses_buat');
 Route::get('/detailArtikel/{slug}', 'ArtikelController@detail');
 Route::get('/editArtikel/{id}', 'ArtikelController@edit');
 Route::put('/proses_buatArtikel/{id}', 'ArtikelController@proses_edit');
 Route::get('/hapusArtikel/{id}', 'ArtikelController@hapus' );
-Route::get('/lihatSampah', 'ArtikelController@lihat_sampah');
+Route::get('/lihatSampah', 'ArtikelController@lihat_sampah')->name('lihatSampah');
 Route::get('/pulihkanSampah/{id}', 'ArtikelController@pulih_sampah' );
 Route::delete('/hapusSampah/{id}', 'ArtikelController@hapus_sampah' );
 // End Route Artikel
@@ -67,5 +67,5 @@ Route::get('/saran', 'SaranController@index');
 Route::post('/sendSaran', 'SaranController@store');
 Route::get('auth/{provider}', 'GoogleController@redirect');
 Route::get('auth/{provider}/callback', 'GoogleController@callback');
-Route::get('/getTemplate1', 'TemplateController@getTemplate1');
-Route::get('/getTemplate2', 'TemplateController@getTemplate2');
+
+?>
