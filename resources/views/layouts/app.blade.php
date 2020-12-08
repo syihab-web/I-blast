@@ -375,7 +375,7 @@
 
 		<div class="footer-right">
 
-		<p class="footer-company-about">
+		<p class="footer-company-about-center   ">
 		<span>Detail Perusahaan</span>
         INOVINDO Merupakan perusahaan Jasa Pembuatan Website Profesional, memiliki tenaga ahli muda yang berkompeten dan senantiasa mengutamakan pelayanan yang prima untuk klien / perusahaan mitra.</p>
 
